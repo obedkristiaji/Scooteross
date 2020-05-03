@@ -1,6 +1,6 @@
 <?php
 $url = $_SERVER['REDIRECT_URL'];
-$baseURL = '/scooteross2';
+$baseURL = '/scooteross';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     switch ($url) {
