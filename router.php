@@ -4,7 +4,7 @@ $baseURL = '/scooteross';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     switch ($url) {
-        case $baseURL . '/datapengguna';
+        case $baseURL . '/data-pengguna';
             require_once "controller/Admin.php";
             $dataPenggunaCtrl = new AdminController();
             echo $dataPenggunaCtrl->view_data_pengguna();
@@ -24,17 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $indexOperatorCtrl = new OperatorController();
             echo $indexOperatorCtrl->view_index_operator();
             break;
-        case $baseURL . '/scooteradmin';
+        case $baseURL . '/scooter-admin';
             require_once "controller/Admin.php";
             $dataScooterCtrl = new AdminController();
             echo $dataScooterCtrl->view_data_scooter();
             break;
-        case $baseURL . '/scooterpimpinan';
+        case $baseURL . '/scooter-pimpinan';
             require_once "controller/Pimpinan.php";
             $dataScooterCtrl2 = new PimpinanController();
             echo $dataScooterCtrl2->view_data_scooter();
             break;
-        case $baseURL . '/datapenyewa';
+        case $baseURL . '/data-penyewa';
             require_once "controller/Operator.php";
             $dataPenyewaCtrl = new OperatorController();
             echo $dataPenyewaCtrl->view_data_penyewa();
