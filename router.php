@@ -39,6 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $dataPenyewaCtrl = new OperatorController();
             echo $dataPenyewaCtrl->view_data_penyewa();
             break;
+        case $baseURL . '/login';
+            require_once "controller/Login.php";
+            $loginCtrl = new LoginController();
+            echo $loginCtrl->view_index_login();
+            break;
         default:
             echo '404 Not Found!';
             break;
