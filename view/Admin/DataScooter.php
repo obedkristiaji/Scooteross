@@ -18,7 +18,7 @@
                     <td> '. $row->getNoUnik() .' </td>
                     <td> '. $row->getWarna() .' </td>
                     <td> '. $row->getTarifScooter() .' </td>
-                    <td><form><input type="submit" value="Edit"><input type="submit" value="Hapus"></form></td>
+                    <td><form><input type="submit" value="Hapus"></form></td>
                     </tr>
                 ';
             }
@@ -28,6 +28,7 @@
     <div class="flex-footer">
         <div class="left-footer">
             <button>Tambah Scooter</button>
+            <button>Edit Tarif</button>
         </div>
         <div class="right-footer">
             <!-- pagination button -->

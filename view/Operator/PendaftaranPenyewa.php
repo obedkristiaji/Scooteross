@@ -1,26 +1,27 @@
-<div class="pendaftaranPenyewa">
-    <h1>Pendaftaran Penyewa</h1>
-    <form mtehod="GET" action="pendaftaranPenyewa">
-        <table>
-            <tr>
-                <td>No KTP : </td>
-                <td><input type="number" name="KTPPenyewa" required></td>
-            </tr>
-            <tr>
-                <td>Nama : </td>
-                <td><input type="text" name="namePenyewa" required></td>
-            </tr>
-            <tr>
-                <td>Alamat : </td>
-                <td><input type="text" name="addressPenyewa" required></td>
-            </tr>
-            <tr>
-                <td>Upload Foto KTP : </td>
-                <td><input type="file" placeholder="Choose File" required></td>
-            </tr>
-            <tr>
-                <td><input type="submit" placeholder="Tambah" required></td>
-            </tr>
-        </table>
+<div class="flex-container">
+    <form method="GET" action="pendaftaranPenyewa">
+        <div class="flex-form">
+            <h1>Pendaftaran Penyewa</h1>
+            <div class="input">
+                <p>No KTP : </p>
+                <input type="number" name="KTPPenyewa" required>
+            </div>
+            <div class="input">
+                <p>Nama : </p>
+                <input type="text" name="namePenyewa" required>
+            </div>
+            <div class="input">
+                <p>Alamat : </p>
+                <input type="text" name="addressPenyewa" required>
+            </div>
+            <div class="input">
+                <p>Upload Foto KTP : </p>
+                <input type="file" placeholder="Choose File" required>
+            </div>
+            <div class="input">
+                <input type="submit" value="Daftar" required>
+                <input type="submit" value="Kembali" required>
+            </div>
+        </div>
     </form>
 </div>

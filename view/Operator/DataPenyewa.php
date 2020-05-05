@@ -1,6 +1,6 @@
 <div class="flex-container">
     <div class="flex-header">
-        <h1>Data Scooter</h1>
+        <h1>Data Penyewa</h1>
         <form><input type="text" name="search"><input type="submit" value="Cari"></form>
     </div>
     <div class="flex-body">
