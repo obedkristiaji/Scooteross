@@ -44,6 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $loginCtrl = new LoginController();
             echo $loginCtrl->view_index_login();
             break;
+        case $baseURL . '/tambah-pengguna';
+            require_once "controller/Admin.php";
+            $tambahPenggunaCtrl = new AdminController();
+            echo $tambahPenggunaCtrl->view_tambah_pengguna();
+            break;
         default:
             echo '404 Not Found!';
             break;

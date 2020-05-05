@@ -7,6 +7,10 @@
                 <td><input type="text" name="namePengguna"></td>
             </tr>
             <tr>
+                <td>Id : </td>
+                <td><input type="number" name="IdPengguna"></td>
+            </tr>
+            <tr>
                 <td>Alamat : </td>
                 <td><input type="text" name="addressPengguna"></td>
             </tr>
