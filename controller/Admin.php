@@ -52,5 +52,32 @@ class AdminController{
         []
         );
     }
+
+    public function view_tambah_pengguna(){
+        return View::createView('/Admin/TambahPengguna.php',
+        []
+        );
+    }
+
+    public function tambahPengguna(){
+        $namaPengguna = $_GET['namePengguna'];
+        $idPengguna = $_GET['IdPengguna'];
+        $alamatPengguna = $_GET['addressPengguna'];
+        $Role = $_GET['roles'];
+        $KTPPengguna = $_GET['KTPPengguna'];
+        if(isset($namaPengguna) && isset($alamatPengguna) && isset($Role) && isset($KTPPengguna) 
+            && $namaPengguna != "" && $alamatPengguna != "" && $Role != "" && $KTPPengguna != ""
+        ){
+            $namaPengguna = $this->db->escapeString($namaPengguna);
+            $idPengguna = $this->db->escapeString($idPengguna);
+            $alamatPengguna = $this->db->escapeString($alamatPengguna);
+            $Role = $this->db->escapeString($Role);
+            $KTPPengguna = $this->db->escapeString($KTPPengguna);
+
+            $query = "INSERT INTO DataPengguna VALUES ('$namaPengguna','$idPengguna','$alamatPengguna','$Role','$KTPPengguna')";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
+    
 }
 ?>
