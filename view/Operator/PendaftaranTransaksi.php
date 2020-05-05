@@ -1,32 +1,31 @@
-<div class="pendaftaranTransaksi">
-    <h1>Pendaftaran Transaksi</h1>
-    <form mtehod="GET" action="pendaftaranTransaksi">
-        <table>
-            <tr>
-                <td>No KTP : </td>
-                <td><input type="number" name="KTPPenyewa" required></td>
-            </tr>
-            <tr>
-                <td>No Scooter : </td>
-                <td><input type="number" name="noScooter" required></td>
-            </tr>
-            <tr>
-                <td>Durasi Peminjaman : </td>
-                <td><input type="number" name="duration" required></td>
-            </tr>
-            <tr>
-                <td>Tanggal Peminjaman : </td>
-                <td><input type="date" name="tanggalPinjam" required></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" name="masukkan" value="KTP" required /> KTP
-                    <input type="checkbox" name="masukkan" value="uangMuka" required /> Uang Muka 
-                </td>
-            </tr>    
-            <tr>
-                <td><input type="submit" placeholder="Input"></td>
-            </tr>
-        </table>
+<div class="flex-container">
+    <form method="GET" action="pendaftaranTransaksi">
+        <div class="flex-form">
+            <h1>Pendaftaran Transaksi</h1>
+            <div class="input">
+                <p>No KTP : </p>
+                <input type="text" name="KTPPenyewa" required>
+            </div>
+            <div class="input">
+                <p>No Scooter : </p>
+                <input type="number" name="noScooter" required>
+            </div>
+            <div class="input">
+                <p>Durasi Peminjaman : </p>
+                <input type="number" name="duration" required>
+            </div>
+            <div class="input">
+                <p>Tanggal Peminjaman : </p>
+                <input type="date" name="tanggalPinjam" required>
+            </div>
+            <div class="input">
+                <input type="checkbox" name="masukkan" value="KTP" required /> KTP
+                <input type="checkbox" name="masukkan" value="uangMuka" required /> Uang Muka
+            </div>
+            <div class="input">
+                <input type="submit" value="Daftar">
+                <input type="submit" value="Kembali">
+            </div>
+        </div>
     </form>
 </div>

@@ -11,14 +11,14 @@ class AdminController{
     }
 
     public function view_data_pengguna(){
-        $result = $this->getAllDataPengguna();
-		return View::createView('/Admin/DataPengguna.php',
+        $result = $this->get_all_data_pengguna();
+		return View::createView('/Admin/dataPengguna.php',
         [
             "result"=> $result
         ]);
 	}
 
-    public function getAllDataPengguna(){
+    public function get_all_data_pengguna(){
         $query = "SELECT * from DataPengguna";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -29,15 +29,15 @@ class AdminController{
     }
 
     public function view_data_scooter(){
-        $result = $this->getAllDataScooter();
-        return View::createView('/Admin/DataScooter.php',
+        $result = $this->get_all_data_scooter();
+        return View::createView('/Admin/dataScooter.php',
         [
             "result"=> $result
         ]
         );
     }
 
-    public function getAllDataScooter(){
+    public function get_all_data_scooter(){
         $query = "SELECT * from DataScooter";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -54,12 +54,12 @@ class AdminController{
     }
 
     public function view_tambah_pengguna(){
-        return View::createView('/Admin/TambahPengguna.php',
+        return View::createView('/Admin/tambahPengguna.php',
         []
         );
     }
 
-    public function tambahPengguna(){
+    public function tambah_pengguna(){
         $namaPengguna = $_GET['namePengguna'];
         $idPengguna = $_GET['IdPengguna'];
         $alamatPengguna = $_GET['addressPengguna'];
