@@ -1,6 +1,6 @@
 <div class="tambahPengguna">
     <h1>Tambah Pengguna</h1>
-    <form mtehod="GET" action="tambahPengguna">
+    <form method="GET" action="tambah-pengguna-process">
         <table>
             <tr>
                 <td>Nama : </td>

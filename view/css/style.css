@@ -16,8 +16,6 @@ header {
     background-color: #5F4B8B;
     color: #5F4B8B;
     text-align: left;
-    border-bottom-right-radius: 50%;
-    border-bottom-left-radius: 50%;
 }
 
 footer {
@@ -42,8 +40,7 @@ footer {
     background-color: #5F4B8B;
     color: #5F4B8B;
     text-align: center;
-    border-bottom-right-radius: 50%;
-    border-top-right-radius: 15%;
+    border-bottom-right-radius: 70%;
 }
 
 .right {
@@ -56,25 +53,23 @@ footer {
     color: #5F4B8B;
     text-align: center;
     border-bottom-left-radius: 50%;
-    border-top-left-radius: 50%;
 }
 
 .home-container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 15%;
 }
 
 .home-container>button {
     background-color: #5F4B8B;
     border: none;
     color: #E69A8D;
-    padding: 5% 5%;
+    padding: 75px 75px;
     display: inline-block;
     text-align: center;
     font-size: 100%;
-    margin: 4px 2px;
+    margin: 10px 10px;
     cursor: pointer;
 }
 
@@ -82,4 +77,34 @@ footer {
 .item2,
 .item3 {
     border-radius: 12px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+}
+
+.flex-header,
+.flex-footer,
+.flex-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+table {
+    min-width: 500px;
 }

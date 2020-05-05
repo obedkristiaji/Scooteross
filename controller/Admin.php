@@ -74,7 +74,29 @@ class AdminController{
             $Role = $this->db->escapeString($Role);
             $KTPPengguna = $this->db->escapeString($KTPPengguna);
 
-            $query = "INSERT INTO DataPengguna VALUES ('$namaPengguna','$idPengguna','$alamatPengguna','$Role','$KTPPengguna')";
+            $query = "INSERT INTO DataPengguna VALUES ('$idPengguna','$namaPengguna','$alamatPengguna','$Role','$KTPPengguna')";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
+
+    public function view_tambah_scooter(){
+        return View::createView('/Admin/TambahScooter.php',
+        []
+        );
+    }
+
+    public function tambahScooter(){
+        $noUnikScooter = $_GET['newNoUnik'];
+        $warnaScooter = $_GET['newColor'];
+        $tarifScooter = $_GET['newTarif'];
+        if(isset($noUnikScooter) && isset($warnaScooter) && isset($tarifScooter)   
+            && $noUnikScooter != "" && $warnaScooter != "" && $tarifScooter != ""
+        ){
+            $noUnikScooter = $this->db->escapeString($noUnikScooter);
+            $warnaScooter= $this->db->escapeString($warnaScooter);
+            $tarifScooter = $this->db->escapeString($tarifScooter);
+
+            $query = "INSERT INTO DataScooter VALUES ('$noUnikScooter','$warnaScooter','$tarifScooter')";
             $this->db->executeNonSelectQuery($query);
         }
     }
