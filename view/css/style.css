@@ -108,6 +108,8 @@ footer {
 table {
     min-width: 500px;
 }
+<<<<<<< HEAD
+=======
 
 .flex-form {
     display: flex;
@@ -119,3 +121,4 @@ table {
     display: inline-block;
     min-width: 100px;
 }
+>>>>>>> 3b16d10af5ed96f7f5956c516953432f1a034e29
