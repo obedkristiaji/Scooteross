@@ -4,61 +4,61 @@ $baseURL = '/scooteross';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     switch ($url) {
-        //home page
+        // home page
         case $baseURL . '/index';
             require_once "controller/HomeController.php";
             $homeCtrl = new HomeController();
             echo $homeCtrl->view_home();
             break;
-        //data pengguna admin
+        // data pengguna admin
         case $baseURL . '/data-pengguna';
             require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_data_pengguna();
             break;
-        //home admin
+        // home admin
         case $baseURL . '/admin';
             require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_index_admin();
             break;
-        //home pimpinan
+        // home pimpinan
         case $baseURL . '/pimpinan';
             require_once "controller/PimpinanController.php";
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_index_pimpinan();
             break;
-        //home operator
+        // home operator
         case $baseURL . '/operator';
             require_once "controller/OperatorController.php";
             $operatorCtrl = new OperatorController();
             echo $operatorCtrl->view_index_operator();
             break;
-        //data scooter admin
+        // data scooter admin
         case $baseURL . '/scooter-admin';
             require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_data_scooter();
             break;
-        //data scooter pimpinan
+        // data scooter pimpinan
         case $baseURL . '/scooter-pimpinan';
             require_once "controller/PimpinanController.php";
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_data_scooter();
             break;
-        //data penyewa operator
+        // data penyewa operator
         case $baseURL . '/data-penyewa';
             require_once "controller/OperatorController.php";
             $operatorCtrl = new OperatorController();
             echo $operatorCtrl->view_data_penyewa();
             break;
-        //login home
+        // login home
         case $baseURL . '/login';
             require_once "controller/HomeController.php";
             $homeCtrl = new HomeController();
             echo $homeCtrl->view_index_login();
             break;
-        //tambah penggguna admin
+        // tambah penggguna admin
         case $baseURL . '/tambah-pengguna';
             require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
