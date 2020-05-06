@@ -66,20 +66,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             break;
         // proses tambah pengguna admin
         case $baseURL . '/tambah-pengguna-process':
-            require_once "controller/Admin.php";
+            require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
             $adminCtrl->tambahPengguna();
             header('Location: tambah-pengguna');
             break;
         // tambah scooter admin
         case $baseURL . '/tambah-scooter';
-            require_once "controller/Admin.php";
+            require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_tambah_scooter();
             break;
         // proses tambah scooter admin
         case $baseURL . '/tambah-scooter-process':
-            require_once "controller/Admin.php";
+            require_once "controller/AdminController.php";
             $adminCtrl = new AdminController();
             $adminCtrl->tambahScooter();
             header('Location: tambah-scooter');
