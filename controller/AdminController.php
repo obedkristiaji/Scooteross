@@ -12,7 +12,7 @@ class AdminController{
 
     public function view_data_pengguna(){
         $result = $this->getAllDataPengguna();
-		return View::createView('/Admin/DataPengguna.php',
+		return View::createView('/Admin/dataPengguna.php',
         [
             "result"=> $result
         ]);
@@ -30,7 +30,7 @@ class AdminController{
 
     public function view_data_scooter(){
         $result = $this->getAllDataScooter();
-        return View::createView('/Admin/DataScooter.php',
+        return View::createView('/Admin/dataScooter.php',
         [
             "result"=> $result
         ]
@@ -54,7 +54,7 @@ class AdminController{
     }
 
     public function view_tambah_pengguna(){
-        return View::createView('/Admin/TambahPengguna.php',
+        return View::createView('/Admin/tambahPengguna.php',
         []
         );
     }
@@ -100,6 +100,5 @@ class AdminController{
             $this->db->executeNonSelectQuery($query);
         }
     }
-    
 }
 ?>

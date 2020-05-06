@@ -1,30 +1,27 @@
-<div class="tambahPengguna">
-    <h1>Tambah Pengguna</h1>
+<div class="flex-container">
     <form method="GET" action="tambah-pengguna-process">
-        <table>
-            <tr>
-                <td>Nama : </td>
-                <td><input type="text" name="namePengguna"></td>
-            </tr>
-            <tr>
-                <td>Id : </td>
-                <td><input type="number" name="IdPengguna"></td>
-            </tr>
-            <tr>
-                <td>Alamat : </td>
-                <td><input type="text" name="addressPengguna"></td>
-            </tr>
-            <tr>
-                <td>Role : </td>
-                <td><input type="text" name="roles"></td>
-            </tr>
-            <tr>
-                <td>KTP : </td>
-                <td><input type="number" name="KTPPengguna"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" placeholder="Tambah"></td>
-            </tr>
-        </table>
+        <div class="flex-form">
+            <h1>Tambah Pengguna</h1>
+            <div class="input">
+                <p>Nama : </p>
+                <input type="text" name="namePengguna">
+            </div>
+            <div class="input">
+                <p>Alamat : </p>
+                <input type="text" name="addressPengguna">
+            </div>
+            <div class="input">
+                <p>Role : </p>
+                <input type="text" name="roles">
+            </div>
+            <div class="input">
+                <p>KTP : </p>
+                <input type="number" name="KTPPengguna">
+            </div>
+            <div>
+                <input type="submit" value="Tambah">
+                <input type="submit" value="Kembali">
+            </div>
+        </div>
     </form>
 </div>

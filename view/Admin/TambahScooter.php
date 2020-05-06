@@ -1,22 +1,15 @@
-<div class="tambahScooter">
-    <h1>Tambah Scooter</h1>
-    <form mtehod="GET" action="tambah-scooter-process">
-        <table>
-            <tr>
-                <td>NoUnik : </td>
-                <td><input type="number" name="newNoUnik"></td>
-            </tr>
-            <tr>
-                <td>Warna : </td>
-                <td><input type="text" name="newColor"></td>
-            </tr>
-            <tr>
-                <td>Tarif : </td>
-                <td><input type="number" name="newTarif"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" placeholder="Tambah"></td>
-            </tr>
-        </table>
+<div class="flex-container">
+    <form method="GET" action="tambah-scooter-process">
+        <div class="flex-form">
+            <h1>Tambah Scooter</h1>
+            <div class="input">
+                <p>Warna : </p>
+                <input type="text" name="newColor">
+            </div>
+            <div class="input">
+                <input type="submit" value="Tambah">
+                <input type="submit" value="Kembali">
+            </div>
+        </div>
     </form>
 </div>

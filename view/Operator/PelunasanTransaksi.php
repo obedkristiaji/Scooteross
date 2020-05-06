@@ -1,32 +1,31 @@
-<div class="pelunasanTransaksi">
-    <h1>Pelunasan Transaksi</h1>
-    <form mtehod="GET" action="pelunasanTransaksi">
-        <table>
-            <tr>
-                <td>No KTP : </td>
-                <td><input type="number" name="KTPPenyewa" required></td>
-            </tr>
-            <tr>
-                <td>No Scooter : </td>
-                <td><input type="number" name="noScooter" required></td>
-            </tr>
-            <tr>
-                <td>Durasi Tambahan : </td> 
-                <td><input type="number" name="durasiTambahan" required></td>
-            </tr>
-            <tr>
-                <td>Biaya Tambahan : </td>
-                <td><input type="number" name="biayaTambahan" required></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" name="masukkan" value="KTP" required /> KTP
-                    <input type="checkbox" name="masukkan" value="biayaSewa" required /> Biaya Sewa 
-                </td>
-            </tr>
-            <tr>
-                <td><input type="submit" placeholder="Input"></td>
-            </tr>
-        </table>
+<div class="flex-container">
+    <form method="GET" action="pelunasanTransaksi">
+        <div class="flex-form">
+            <h1>Pelunasan Transaksi</h1>
+            <div class="input">
+                <p>No KTP : </p>
+                <input type="number" name="KTPPenyewa" required>
+            </div>
+            <div class="input">
+                <p>No Scooter : </p>
+                <input type="number" name="noScooter" required>
+            </div>
+            <div class="input">
+                <p>Durasi Tambahan : </p>
+                <input type="number" name="durasiTambahan" required>
+            </div>
+            <div class="input">
+                <p>Biaya Tambahan : </p>
+                <input type="number" name="biayaTambahan" required>
+            </div>
+            <div class="input">
+                <input type="checkbox" name="masukkan" value="KTP" required /> KTP
+                <input type="checkbox" name="masukkan" value="biayaSewa" required /> Biaya Sewa
+            </div>
+            <div class="input">
+                <input type="submit" value="Selesai">
+                <input type="submit" value="Kembali">
+            </div>
+        </div>
     </form>
 </div>
