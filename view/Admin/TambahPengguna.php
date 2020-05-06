@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <form method="GET" action="tambahPengguna">
+    <form method="GET" action="tambah-pengguna-process">
         <div class="flex-form">
             <h1>Tambah Pengguna</h1>
             <div class="input">
