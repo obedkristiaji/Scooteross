@@ -17,7 +17,7 @@ class PimpinanController{
     }
 
     public function view_data_scooter(){
-        $result = $this->get_all_data_scooter();
+        $result = $this->getAllDataScooter();
         return View::createView('/Pimpinan/dataScooter.php',
         [
             "result"=> $result
@@ -25,7 +25,7 @@ class PimpinanController{
         );
     }
 
-    public function get_all_data_scooter(){
+    public function getAllDataScooter(){
         $query = "SELECT * from DataScooter";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];

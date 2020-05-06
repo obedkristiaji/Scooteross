@@ -11,14 +11,14 @@ class AdminController{
     }
 
     public function view_data_pengguna(){
-        $result = $this->get_all_data_pengguna();
+        $result = $this->getAllDataPengguna();
 		return View::createView('/Admin/dataPengguna.php',
         [
             "result"=> $result
         ]);
 	}
 
-    public function get_all_data_pengguna(){
+    public function getAllDataPengguna(){
         $query = "SELECT * from DataPengguna";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -29,7 +29,7 @@ class AdminController{
     }
 
     public function view_data_scooter(){
-        $result = $this->get_all_data_scooter();
+        $result = $this->getAllDataScooter();
         return View::createView('/Admin/dataScooter.php',
         [
             "result"=> $result
@@ -37,7 +37,7 @@ class AdminController{
         );
     }
 
-    public function get_all_data_scooter(){
+    public function getAllDataScooter(){
         $query = "SELECT * from DataScooter";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -59,7 +59,7 @@ class AdminController{
         );
     }
 
-    public function tambah_pengguna(){
+    public function tambahPengguna(){
         $namaPengguna = $_GET['namePengguna'];
         $idPengguna = $_GET['IdPengguna'];
         $alamatPengguna = $_GET['addressPengguna'];
@@ -74,10 +74,31 @@ class AdminController{
             $Role = $this->db->escapeString($Role);
             $KTPPengguna = $this->db->escapeString($KTPPengguna);
 
-            $query = "INSERT INTO DataPengguna VALUES ('$namaPengguna','$idPengguna','$alamatPengguna','$Role','$KTPPengguna')";
+            $query = "INSERT INTO DataPengguna VALUES ('$idPengguna','$namaPengguna','$alamatPengguna','$Role','$KTPPengguna')";
             $this->db->executeNonSelectQuery($query);
         }
     }
-    
+
+    public function view_tambah_scooter(){
+        return View::createView('/Admin/TambahScooter.php',
+        []
+        );
+    }
+
+    public function tambahScooter(){
+        $noUnikScooter = $_GET['newNoUnik'];
+        $warnaScooter = $_GET['newColor'];
+        $tarifScooter = $_GET['newTarif'];
+        if(isset($noUnikScooter) && isset($warnaScooter) && isset($tarifScooter)   
+            && $noUnikScooter != "" && $warnaScooter != "" && $tarifScooter != ""
+        ){
+            $noUnikScooter = $this->db->escapeString($noUnikScooter);
+            $warnaScooter= $this->db->escapeString($warnaScooter);
+            $tarifScooter = $this->db->escapeString($tarifScooter);
+
+            $query = "INSERT INTO DataScooter VALUES ('$noUnikScooter','$warnaScooter','$tarifScooter')";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
 }
 ?>
