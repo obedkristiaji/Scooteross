@@ -17,7 +17,7 @@ class OperatorController{
     }
 
     public function view_data_penyewa(){
-        $result = $this->get_all_data_penyewa();
+        $result = $this->getAllDataPenyewa();
         return View::createView('/Operator/dataPenyewa.php',
         [
             "result"=> $result
@@ -25,7 +25,7 @@ class OperatorController{
         );
     }
 
-    public function get_all_data_penyewa(){
+    public function getAllDataPenyewa(){
         $query = "SELECT * from DataPenyewa";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
