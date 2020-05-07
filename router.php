@@ -84,6 +84,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminCtrl->tambahScooter();
             header('Location: tambah-scooter');
             break;
+        // view edit pengguna admin
+        case $baseURL . '/edit-pengguna';
+            require_once "Controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            echo $adminCtrl->view_edit_pengguna();
+            break;
+        // proses edit pengguna admin
+        case $baseURL . '/edit-pengguna-process':
+            require_once "controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            $adminCtrl->editPengguna();
+            header('Location: edit-pengguna');
+            break;
         // default
         default:
             echo '404 Not Found!';
