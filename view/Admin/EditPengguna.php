@@ -1,7 +1,11 @@
 <div class="flex-container">
-    <form method="GET" action="editPengguna">
+    <form method="GET" action="edit-pengguna-process">
         <div class="flex-form">
             <h1>Edit Pengguna</h1>
+            <div class="input">
+                <p>Masukkan ID Pengguna : </p>
+                <input type="number" name="idLamaPengguna">
+            </div>
             <div class="input">
                 <p>Nama Baru : </p>
                 <input type="text" name="newNamePengguna">

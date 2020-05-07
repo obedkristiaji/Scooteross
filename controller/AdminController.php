@@ -86,17 +86,40 @@ class AdminController{
     }
 
     public function tambahScooter(){
-        $noUnikScooter = $_GET['newNoUnik'];
+        $noUnik = 1;
         $warnaScooter = $_GET['newColor'];
-        $tarifScooter = $_GET['newTarif'];
-        if(isset($noUnikScooter) && isset($warnaScooter) && isset($tarifScooter)   
-            && $noUnikScooter != "" && $warnaScooter != "" && $tarifScooter != ""
+        $tarif = 20000;
+        if(isset($warnaScooter)  && $warnaScooter != "" 
         ){
-            $noUnikScooter = $this->db->escapeString($noUnikScooter);
-            $warnaScooter= $this->db->escapeString($warnaScooter);
-            $tarifScooter = $this->db->escapeString($tarifScooter);
 
-            $query = "INSERT INTO DataScooter VALUES ('$noUnikScooter','$warnaScooter','$tarifScooter')";
+            $warnaScooter= $this->db->escapeString($warnaScooter);
+            $query = "INSERT INTO DataScooter VALUES ('$noUnik','$warnaScooter','$tarif')";
+            $this->db->executeNonSelectQuery($query);
+            $noUnik++;
+        }
+    }
+
+    public function view_edit_pengguna(){
+        return View::createView('/Admin/EditPengguna.php',
+        []
+        );
+    }
+
+    public function editPengguna(){
+        $id = $_GET['idLamaPengguna'];
+        $newName = $_GET['newNamePengguna'];
+        $newAlamat = $_GET['newAddressPenggguna'];
+        $newRole = $_GET['newRoles'];
+
+        if(isset($id) && isset($newName) && isset($newAlamat) && isset($newRole)
+            && $id != "" && $newName != "" && $newAlamat != "" && $newRole != ""
+        ){
+            $id = $this->db->escapeString($id);
+            $newName = $this->db->escapeString($newName);
+            $newAlamat = $this->db->escapeString($newAlamat);
+            $newRole = $this->db->escapeString($newRole);
+
+            $query = "UPDATE DataPengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole' WHERE id='$id' ";
             $this->db->executeNonSelectQuery($query);
         }
     }
