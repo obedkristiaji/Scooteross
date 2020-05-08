@@ -119,3 +119,10 @@ table {
     display: inline-block;
     min-width: 100px;
 }
+
+.btn {
+    border: none;
+    color: black;
+    padding: 12px 16px;
+    font-size: 16px;
+}

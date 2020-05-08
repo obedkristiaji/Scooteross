@@ -34,9 +34,9 @@
             <form method="GET">
                 <?php
                 if ($_SESSION['pageCount'] > 1) {
-                    echo '<input type="submit" name="prev" value="Previous">';
+                    echo '<button class="btn" name="prev"><i class="fa fa-angle-left"></i></button>';
                     echo ' ' . $_SESSION['i'] . ' ';
-                    echo '<input type="submit" name="next" value="Next">';
+                    echo '<button class="btn" name="next"><i class="fa fa-angle-right"></i></button>';
                 }
                 ?>
             </form>

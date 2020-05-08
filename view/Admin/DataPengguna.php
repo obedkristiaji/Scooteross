@@ -6,22 +6,22 @@
     <div class="flex-body">
         <table border="1">
             <tr>
-                <th>Id</th>
+                <th>KTP</th>
                 <th>Nama</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Role</th>
-                <th>KTP</th>
                 <th>Aksi</th>
             </tr>
             <?php
             foreach ($result as $key => $row) {
                 echo '
                     <tr>
-                    <td> ' . $row->getIdPengguna() . ' </td>
+                    <td> ' . $row->getKTPPengguna() . ' </td>
                     <td> ' . $row->getNamaPengguna() . ' </td>
                     <td> ' . $row->getAlamatPengguna() . ' </td>
+                    <td> ' . $row->getEmailPengguna() . ' </td>
                     <td> ' . $row->getRole() . ' </td>
-                    <td> ' . $row->getKTPPengguna() . ' </td>
                     <td><form><input type="submit" value="Edit"><input type="submit" value="Hapus"></form></td>
                     </tr>
                 ';
@@ -37,9 +37,9 @@
             <form method="GET">
                 <?php
                 if ($_SESSION['pageCount'] > 1) {
-                    echo '<input type="submit" name="prev" value="Previous">';
+                    echo '<button class="btn" name="prev"><i class="fa fa-angle-left"></i></button>';
                     echo ' ' . $_SESSION['i'] . ' ';
-                    echo '<input type="submit" name="next" value="Next">';
+                    echo '<button class="btn" name="next"><i class="fa fa-angle-right"></i></button>';
                 }
                 ?>
             </form>
