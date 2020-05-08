@@ -16,7 +16,7 @@
             </div>
             <div class="input">
                 <p>KTP : </p>
-                <input type="number" name="KTPPengguna">
+                <input type="text" name="KTPPengguna">
             </div>
             <div>
                 <input type="submit" value="Tambah">
