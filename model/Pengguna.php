@@ -1,21 +1,21 @@
 <?php
     class Pengguna{
-        public $idPengguna;
+        public $KTPPengguna;
         public $NamaPengguna;
         public $AlamatPengguna;
+        public $EmailPengguna;
         public $Role;
-        public $KTPPengguna;
 
-        public function __construct($idPengguna,$NamaPengguna,$AlamatPengguna,$Role,$KTPPengguna){
-            $this->idPengguna = $idPengguna;
+        public function __construct($KTPPengguna,$NamaPengguna,$AlamatPengguna,$EmailPengguna, $Role){
+            $this->KTPPengguna = $KTPPengguna;
             $this->NamaPengguna = $NamaPengguna;
             $this->AlamatPengguna = $AlamatPengguna;
+            $this->EmailPengguna = $EmailPengguna;
             $this->Role = $Role;
-            $this->KTPPengguna = $KTPPengguna;
         }
 
-        public function getIdPengguna(){
-            return $this->idPengguna;
+        public function getKTPPengguna(){
+            return $this->KTPPengguna;
         }
 
         public function getNamaPengguna(){
@@ -26,12 +26,12 @@
             return $this->AlamatPengguna;
         }
 
-        public function getRole(){
-            return $this->Role;
+        public function getEmailPengguna(){
+            return $this->EmailPengguna;
         }
 
-        public function getKTPPengguna(){
-            return $this->KTPPengguna;
+        public function getRole(){
+            return $this->Role;
         }
     }
 ?>

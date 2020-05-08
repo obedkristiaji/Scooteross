@@ -14,18 +14,18 @@
             foreach ($result as $key => $row) {
                 echo '
                     <tr>
-                    <td> '. $row->getNoUnik() .' </td>
-                    <td> '. $row->getWarna() .' </td>
-                    <td> '. $row->getTarifScooter() .' </td>
+                    <td> ' . $row->getNoUnik() . ' </td>
+                    <td> ' . $row->getWarna() . ' </td>
+                    <td> ' . $row->getTarifScooter() . ' </td>
                     </tr>
                 ';
             }
             ?>
         </table>
-        </div>
+    </div>
     <div class="flex-footer">
         <div class="right-footer">
-        <form method="GET">
+            <form method="GET">
                 <?php
                 if ($_SESSION['pageCount'] > 1) {
                     echo '<button class="btn" name="prev"><i class="fa fa-angle-left"></i></button>';

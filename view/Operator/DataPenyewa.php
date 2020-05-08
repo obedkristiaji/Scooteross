@@ -22,7 +22,7 @@
             }
             ?>
         </table>
-        </div>
+    </div>
     <div class="flex-footer">
         <div class="right-footer">
             <form method="GET">

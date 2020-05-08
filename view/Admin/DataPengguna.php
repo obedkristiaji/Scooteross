@@ -6,22 +6,22 @@
     <div class="flex-body">
         <table border="1">
             <tr>
-                <th>Id</th>
+                <th>KTP</th>
                 <th>Nama</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Role</th>
-                <th>KTP</th>
                 <th>Aksi</th>
             </tr>
             <?php
             foreach ($result as $key => $row) {
                 echo '
                     <tr>
-                    <td> ' . $row->getIdPengguna() . ' </td>
+                    <td> ' . $row->getKTPPengguna() . ' </td>
                     <td> ' . $row->getNamaPengguna() . ' </td>
                     <td> ' . $row->getAlamatPengguna() . ' </td>
+                    <td> ' . $row->getEmailPengguna() . ' </td>
                     <td> ' . $row->getRole() . ' </td>
-                    <td> ' . $row->getKTPPengguna() . ' </td>
                     <td><form><input type="submit" value="Edit"><input type="submit" value="Hapus"></form></td>
                     </tr>
                 ';
