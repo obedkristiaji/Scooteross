@@ -25,16 +25,16 @@ class AdminController
 
     public function getAllDataPengguna()
     {
-        $query = "SELECT * from DataPengguna";
+        $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
-            $result[] = new Pengguna($value['id'], $value['NamaPengguna'], $value['Alamat'], $value['Role'], $value['KTP']);
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
-            $result[] = new Pengguna($value['id'], $value['NamaPengguna'], $value['Alamat'], $value['Role'], $value['KTP']);
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
         }
         return $result;
     }
@@ -52,7 +52,7 @@ class AdminController
 
     public function getAllDataScooter()
     {
-        $query = "SELECT * from DataScooter";
+        $query = "SELECT * FROM scooter";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
@@ -84,22 +84,26 @@ class AdminController
 
     public function tambahPengguna()
     {
-        $namaPengguna = $_GET['namePengguna'];
-        $idPengguna = $_GET['IdPengguna'];
-        $alamatPengguna = $_GET['addressPengguna'];
-        $Role = $_GET['roles'];
         $KTPPengguna = $_GET['KTPPengguna'];
+        $namaPengguna = $_GET['namePengguna'];
+        $alamatPengguna = $_GET['addressPengguna'];
+        $emailPengguna = $_GET['emailPengguna'];
+        $passwordPengguna = $_GET['passwordPengguna'];
+        $Role = $_GET['roles'];
+        $Kelurahan = $_GET['kelurahan'];
         if (
-            isset($namaPengguna) && isset($alamatPengguna) && isset($Role) && isset($KTPPengguna)
-            && $namaPengguna != "" && $alamatPengguna != "" && $Role != "" && $KTPPengguna != ""
+            isset($namaPengguna) && isset($alamatPengguna) && isset($Role) && isset($KTPPengguna) && isset($emailPengguna) && isset($passwordPengguna) && isset($Kelurahan)
+            && $namaPengguna != "" && $alamatPengguna != "" && $Role != "" && $KTPPengguna != "" && $emailPengguna != "" && $passwordPengguna != "" && $Kelurahan != ""
         ) {
-            $namaPengguna = $this->db->escapeString($namaPengguna);
-            $idPengguna = $this->db->escapeString($idPengguna);
-            $alamatPengguna = $this->db->escapeString($alamatPengguna);
-            $Role = $this->db->escapeString($Role);
             $KTPPengguna = $this->db->escapeString($KTPPengguna);
+            $namaPengguna = $this->db->escapeString($namaPengguna);
+            $alamatPengguna = $this->db->escapeString($alamatPengguna);
+            $emailPengguna = $this->db->escapeString($emailPengguna);
+            $passwordPengguna = $this->db->escapeString($passwordPengguna);
+            $Role = $this->db->escapeString($Role);
+            $Kelurahan = $this->db->escapeString($Kelurahan);
 
-            $query = "INSERT INTO DataPengguna VALUES ('$idPengguna','$namaPengguna','$alamatPengguna','$Role','$KTPPengguna')";
+            $query = "INSERT INTO pengguna VALUES ('$KTPPengguna','$namaPengguna','$alamatPengguna','$emailPengguna','$passwordPengguna','$Role','$Kelurahan')";
             $this->db->executeNonSelectQuery($query);
         }
     }
@@ -114,7 +118,6 @@ class AdminController
 
     public function tambahScooter()
     {
-        $noUnik = 1;
         $warnaScooter = $_GET['newColor'];
         $tarif = 20000;
         if (
@@ -122,9 +125,8 @@ class AdminController
         ) {
 
             $warnaScooter = $this->db->escapeString($warnaScooter);
-            $query = "INSERT INTO DataScooter VALUES ('$noUnik','$warnaScooter','$tarif')";
+            $query = "INSERT INTO scooter (Warna,Tarif) VALUES ('$warnaScooter','$tarif')";
             $this->db->executeNonSelectQuery($query);
-            $noUnik++;
         }
     }
 
@@ -152,7 +154,7 @@ class AdminController
             $newAlamat = $this->db->escapeString($newAlamat);
             $newRole = $this->db->escapeString($newRole);
 
-            $query = "UPDATE DataPengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole' WHERE id='$id' ";
+            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole' WHERE id='$id' ";
             $this->db->executeNonSelectQuery($query);
         }
     }
