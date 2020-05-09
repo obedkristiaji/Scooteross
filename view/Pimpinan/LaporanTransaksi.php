@@ -16,9 +16,9 @@
             foreach ($result as $key => $row) {
                 echo '
                     <tr>
-                    <td> '. $row->getNoUnik() .' </td>
-                    <td> '. $row->getNoKTPPenyewa() .' </td>
-                    <td> '. $row->getWarna() .' </td>
+                    <td> ' . $row->getNoUnik() . ' </td>
+                    <td> ' . $row->getNoKTPPenyewa() . ' </td>
+                    <td> ' . $row->getWarna() . ' </td>
                     // buat get biaya sewa hrs nerima input dlu dari penyewa
                     // buat tanggal sewa hrs nerima input dlu dari penyewa
                     </tr>
@@ -32,7 +32,15 @@
             <form><label>Tanggal</label><input type="date"><label>-</label><input type="date"><input type="submit" value="Cari"></form>
         </div>
         <div class="right-footer">
-            <!-- pagination button -->
+            <form method="GET">
+                <?php
+                if ($_SESSION['pageCount'] > 1) {
+                    echo '<button class="btn" name="prev"><i class="fa fa-angle-left"></i></button>';
+                    echo '<p class="page-num"> ' . $_SESSION['i'] . ' </p>';
+                    echo '<button class="btn" name="next"><i class="fa fa-angle-right"></i></button>';
+                }
+                ?>
+            </form>
         </div>
     </div>
 </div>

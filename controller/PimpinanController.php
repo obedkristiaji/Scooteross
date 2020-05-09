@@ -26,7 +26,7 @@ class PimpinanController{
     }
 
     public function getAllDataScooter(){
-        $query = "SELECT * from DataScooter";
+        $query = "SELECT * from scooter";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value){
