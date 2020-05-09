@@ -131,15 +131,16 @@ table {
     display: inline-block;
 }
 
-th,td{
-    text-align : left;
-    padding : 8px;
+th,
+td {
+    text-align: left;
+    padding: 8px;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: #DCDCDC;
 }
 
-tr:nth-child(1){
+tr:nth-child(1) {
     background-color: #A9A9A9;
 }
