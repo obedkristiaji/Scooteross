@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'tambahPengguna';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <form method="GET" action="tambah-pengguna-process">
         <div class="flex-form">

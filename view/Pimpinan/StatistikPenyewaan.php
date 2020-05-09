@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'statistikPenyewaan';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <div class="flex-header">
         <h1>Statistik Penyewaan</h1>
