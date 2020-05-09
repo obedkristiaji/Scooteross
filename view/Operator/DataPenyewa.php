@@ -1,3 +1,7 @@
+<?php
+$halamanSekarangNav = 'dataPenyewaOperator';
+$halamanSekarangButton = 'logout';
+?>
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Penyewa</h1>

@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'dataScooterPimpinan';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Scooter</h1>

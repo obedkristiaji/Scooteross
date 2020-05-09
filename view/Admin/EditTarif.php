@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'editTarifAdmin';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <form method="GET" action="edit-scooter-process">
         <div class="flex-form">

@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'editPengguna';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <form method="GET" action="edit-pengguna-process">
         <div class="flex-form">
