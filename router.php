@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_data_scooter();
             break;
-        // data penyewa operator
+        // data penyewa di operator
         case $baseURL . '/data-penyewa';
             require_once "controller/OperatorController.php";
             $operatorCtrl = new OperatorController();
@@ -125,6 +125,36 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminCtrl = new AdminController();
             $adminCtrl->deleteScooter();
             header('Location: scooter-admin');
+            break;
+        // view laporan transaksi di pimpinan taman
+        case $baseURL . '/laporan-transaksi-pimpinan':
+            require_once  "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_laporan_transaksi();
+            break;
+        // view statistik di pimpinan taman
+        case $baseURL . '/statistik-pimpinan' :
+            require_once "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_statistik_pimpinan();
+            break;
+        // view pendaftaran transaksi di operator
+        case $baseURL . '/pendaftaran-transaksi-operator' :
+            require_once "Controller/OperatorController.php";
+            $operatorCtrl = new OperatorController();
+            echo $operatorCtrl->view_pendaftaran_transaksi();
+            break;
+        // view pendaftaran penyewa di operator
+        case $baseURL . '/pendaftaran-penyewa-operator' :
+            require_once "Controller/OperatorController.php";
+            $operatorCtrl = new OperatorController();
+            echo $operatorCtrl->view_pendaftaran_penyewa();
+            break;
+        // view pelunasan transaksi di operator
+        case $baseURL . '/pelunasan-transaksi-operator' :
+            require_once "Controller/OperatorController.php";
+            $operatorCtrl = new OperatorController();
+            echo $operatorCtrl->view_pelunasan_transaksi();
             break;
         // default
         default:
