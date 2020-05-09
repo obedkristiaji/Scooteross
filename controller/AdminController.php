@@ -133,7 +133,7 @@ class AdminController
     {
         $warnaScooter = $_GET['newColor'];
         $tarif = 20000;
-        if ($_SESSION['tarif']) {
+        if (isset($_SESSION['tarif'])) {
             $tarif = $_SESSION['tarif'];
         }
 

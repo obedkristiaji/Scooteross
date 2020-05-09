@@ -3,12 +3,12 @@ $halamanSekarangNav = 'pendaftaranPenyewa';
 $halamanSekarangButton = 'logout';
 ?>
 <div class="flex-container">
-    <form method="GET" action="pendaftaranPenyewa">
+    <form method="GET" action="daftar-penyewa-process">
         <div class="flex-form">
             <h1>Pendaftaran Penyewa</h1>
             <div class="input">
                 <p>No KTP : </p>
-                <input type="number" name="KTPPenyewa" required>
+                <input type="text" name="KTPPenyewa" required>
             </div>
             <div class="input">
                 <p>Nama : </p>
@@ -23,12 +23,16 @@ $halamanSekarangButton = 'logout';
                 <input type="text" name="emailPenyewa" required>
             </div>
             <div class="input">
+                <p>Id Kelurahan : </p>
+                <input type="number" min="1" max="7" name="kelPenyewa" required>
+            </div>
+            <div class="input">
                 <p>Upload Foto KTP : </p>
                 <input type="file" placeholder="Choose File" required>
             </div>
             <div class="input">
                 <input type="submit" value="Daftar" required>
-                <input type="submit" value="Kembali" required>
+                <button onclick="window.location = `./pendaftaran-transaksi`; return false;">Kembali</button>
             </div>
         </div>
     </form>

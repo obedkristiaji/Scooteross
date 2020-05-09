@@ -145,7 +145,12 @@ tr:nth-child(1) {
     background-color: #A9A9A9;
 }
 
-.navigator{
-    padding : 10px;
+.navigator {
+    padding: 10px;
     list-style-type: none;
+}
+
+.flex-body>p {
+    color: whitesmoke;
+    font-size: 30px;
 }

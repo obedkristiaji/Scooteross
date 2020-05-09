@@ -3,7 +3,7 @@ $halamanSekarangNav = 'pendaftaranTransaksi';
 $halamanSekarangButton = 'logout';
 ?>
 <div class="flex-container">
-    <form method="GET" action="pendaftaranTransaksi">
+    <form method="GET" action="pendaftaran-transaksi-process">
         <div class="flex-form">
             <h1>Pendaftaran Transaksi</h1>
             <div class="input">
@@ -19,16 +19,13 @@ $halamanSekarangButton = 'logout';
                 <input type="number" name="duration" required>
             </div>
             <div class="input">
-                <p>Tanggal Peminjaman : </p>
-                <input type="date" name="tanggalPinjam" required>
-            </div>
-            <div class="input">
                 <input type="checkbox" name="masukkan" value="KTP" required /> KTP
                 <input type="checkbox" name="masukkan" value="uangMuka" required /> Uang Muka
             </div>
             <div class="input">
-                <input type="submit" value="Daftar">
-                <input type="submit" value="Kembali">
+                <input type="submit" value="Input">
+                <button onclick="window.location = `./daftar-penyewa`; return false;">Daftar</button>
+                <button onclick="window.location = `./operator`; return false;">Kembali</button>
             </div>
         </div>
     </form>
