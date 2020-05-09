@@ -68,5 +68,31 @@ class OperatorController{
         $result = $this->db->executeSelectQuery($query);
         return $result;
     }
+
+    
+    public function view_pendaftaran_penyewa()
+    {
+        return View::createView(
+            '/Operator/PendaftaranPenyewa.php',
+            []
+        );
+    }
+
+    public function pendaftaranPenyewa(){
+        $NoKTP = $_GET['KTPPenyewa'];
+        $Nama = $_GET['namePenyewa'];
+        $Alamat = $_GET['addressPenyewa'];
+        $Email = $_GET['emailPenyewa'];
+
+        if(isset($NoKTP) && isset($Nama) && isset($Alamat) && $NoKTP!="" && $Nama!="" && $Alamat!=""){
+            $NoKTP = $this->db->escapeString($NoKTP);
+            $Nama = $this->db->escapeString($Nama);
+            $Alamat = $this->db->escapeString($Alamat);
+            $Email = $this->db->escapeString($Email);
+
+            $query = "INSERT INTO penyewa (NoKTP,NamaPenyewa,AlamatPenyewa,email) VALUES ('$NoKTP','$Nama','$Alamat','$Email')";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
 }
 ?>

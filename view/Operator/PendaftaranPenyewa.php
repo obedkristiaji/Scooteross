@@ -15,6 +15,10 @@
                 <input type="text" name="addressPenyewa" required>
             </div>
             <div class="input">
+                <p>Email : </p>
+                <input type="text" name="emailPenyewa" required>
+            </div>
+            <div class="input">
                 <p>Upload Foto KTP : </p>
                 <input type="file" placeholder="Choose File" required>
             </div>

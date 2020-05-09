@@ -140,21 +140,21 @@ class AdminController
 
     public function editPengguna()
     {
-        $id = $_GET['idLamaPengguna'];
+        
         $newName = $_GET['newNamePengguna'];
-        $newAlamat = $_GET['newAddressPenggguna'];
+        $newAlamat = $_GET['newAddressPengguna'];
         $newRole = $_GET['newRoles'];
 
         if (
-            isset($id) && isset($newName) && isset($newAlamat) && isset($newRole)
+            isset($newName) && isset($newAlamat) && isset($newRole)
             && $id != "" && $newName != "" && $newAlamat != "" && $newRole != ""
         ) {
-            $id = $this->db->escapeString($id);
+             
             $newName = $this->db->escapeString($newName);
             $newAlamat = $this->db->escapeString($newAlamat);
             $newRole = $this->db->escapeString($newRole);
 
-            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole' WHERE id='$id' ";
+            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole'";
             $this->db->executeNonSelectQuery($query);
         }
     }
@@ -187,4 +187,24 @@ class AdminController
         $result = $this->db->executeSelectQuery($query);
         return $result;
     }
+
+    public function view_edit_tarif_scooter()
+    {
+        return View::createView(
+            '/Admin/EditTarif.php',
+            []
+        );
+    }
+
+    public function editTarifScooter(){
+        $newTarif = $_GET['newTarif'];
+
+        if(isset($newTarif) && $newTarif !=""){
+            $newTarif = $this->db->escapeString($newTarif);
+            $query = "UPDATE scooter SET Tarif='$newTarif'";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
 }
+
+    
