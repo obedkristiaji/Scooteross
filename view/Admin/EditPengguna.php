@@ -11,8 +11,20 @@
                 <input type="text" name="newAddressPengguna">
             </div>
             <div class="input">
-                <p>Role Baru : </p>
-                <input type="text" name="newRoles">
+                <p>Email Baru : </p>
+                <input type="text" name="newEmailPengguna">
+            </div>
+            <div class="input">
+                <p>Password Baru : </p>
+                <input type="text" name="newPasswordPengguna">
+            </div>
+            <div class="input">
+                <p>Id Role Baru : </p>
+                <input type="number" max="3" min="1" name="newRoles">
+            </div>
+            <div class="input">
+                <p>Id Kelurahan Baru : </p>
+                <input type="number" max="7" min="1" name="newKelurahan">
             </div>
             <div class="input">
                 <input type="submit" value="Update">
