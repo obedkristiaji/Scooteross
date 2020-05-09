@@ -97,6 +97,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminCtrl->editPengguna();
             header('Location: edit-pengguna');
             break;
+        // view edit scooter admin
+        case $baseURL . '/edit-scooter':
+            require_once "Controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            echo $adminCtrl->view_edit_tarif_scooter();
+            break;
+        // proses edit scooter admin
+        case $baseURL . '/edit-scooter-process':
+            require_once "Contoller/AdminController.php";
+            $adminCtrl = new AdminController();
+            $adminCtrl->editTarifScooter();
+            header('Location: edit-scooter');
+            break;
         // default
         default:
             echo '404 Not Found!';
