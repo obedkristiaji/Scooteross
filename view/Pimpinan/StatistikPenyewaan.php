@@ -10,17 +10,20 @@
                 <th>Jumlah Penyewa</th>
             </tr>
             <?php
+            $num = 1;
             foreach ($result as $key => $row) {
                 echo '
                     <tr>
-                    <td> '. $row->getNoUnik() .' </td>
-                    <td> '. $row->getWarna() .' </td>
-                    <td> '. $row->getTarifScooter() .' </td>
+                    <td> '. $num .' </td>
+                    <td> '. $row->getIdScooter() .' </td>
+                    <td> '. $row->getNoTransaksi() .' </td>
                     </tr>
                 ';
+                $num++;
             }
             ?>
         </table>
+        <p>.</p>
         <table>
             <tr>
                 <th>Rank</th>
@@ -28,14 +31,16 @@
                 <th>Jumlah Scooter Sewaan</th>
             </tr>
             <?php
+            $num = 1;
             foreach ($result as $key => $row) {
                 echo '
                     <tr>
-                    <td> '. $row->getNoUnik() .' </td>
-                    <td> '. $row->getWarna() .' </td>
-                    <td> '. $row->getTarifScooter() .' </td>
+                    <td> '. $num .' </td>
+                    <td> '. $row->getNama() .' </td>
+                    <td> '. $row->getKTP() .' </td>
                     </tr>
                 ';
+                $num++;
             }
             ?>
         </table>

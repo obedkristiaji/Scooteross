@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 03:03 PM
+-- Generation Time: May 09, 2020 at 07:25 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.40
 
@@ -30,22 +30,44 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `kecamatan` (
   `idKec` int(11) NOT NULL,
-  `namaKec` varchar(50) NOT NULL,
-  `idKel` int(11) NOT NULL
+  `namaKec` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kecamatan`
 --
 
-INSERT INTO `kecamatan` (`idKec`, `namaKec`, `idKel`) VALUES
-(1, 'Bojongloa Kaler', 1),
-(2, 'Sukajadi', 2),
-(3, 'Bojongloa Kidul', 3),
-(4, 'Sumur', 4),
-(5, 'Bandung Wetan', 5),
-(6, 'Regol', 6),
-(7, 'Astana Anyar', 7);
+INSERT INTO `kecamatan` (`idKec`, `namaKec`) VALUES
+(1, 'Bojongloa Kaler'),
+(2, 'Sukajadi'),
+(3, 'Bojongloa Kidul'),
+(4, 'Sumur'),
+(5, 'Bandung Wetan'),
+(6, 'Regol'),
+(7, 'Astana Anyar'),
+(8, 'Andir'),
+(9, 'Antapani'),
+(10, 'Arcamanik'),
+(11, 'Babakan Ciparay'),
+(12, 'Bandung Kidul'),
+(13, 'Bandung Kulon'),
+(14, 'Batununggal'),
+(15, 'Buahbatu'),
+(16, 'Cibeunying Kaler'),
+(17, 'Cibeunying Kidul'),
+(18, 'Cibiru'),
+(19, 'Cicendo'),
+(20, 'Cidadap'),
+(21, 'Cinambo'),
+(22, 'Coblong'),
+(23, 'Gedebage'),
+(24, 'Kiaracondong'),
+(25, 'Lengkong'),
+(26, 'Mandalajati'),
+(27, 'Panyileukan'),
+(28, 'Rancasari'),
+(29, 'Sukasari'),
+(30, 'Ujungberung');
 
 -- --------------------------------------------------------
 
@@ -55,44 +77,167 @@ INSERT INTO `kecamatan` (`idKec`, `namaKec`, `idKel`) VALUES
 
 CREATE TABLE `kelurahan` (
   `idKel` int(11) NOT NULL,
-  `namaKel` varchar(50) NOT NULL
+  `namaKel` varchar(50) NOT NULL,
+  `idKec` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kelurahan`
 --
 
-INSERT INTO `kelurahan` (`idKel`, `namaKel`) VALUES
-(1, 'Kopo'),
-(2, 'Sukagalih'),
-(3, 'Mekarwangi'),
-(4, 'Babakan Ciamis'),
-(5, 'Cihapit'),
-(6, 'Cigereleng'),
-(7, 'Karanganyar');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `memiliki`
---
-
-CREATE TABLE `memiliki` (
-  `noUnik` int(11) NOT NULL,
-  `noTransaksi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `memiliki`
---
-
-INSERT INTO `memiliki` (`noUnik`, `noTransaksi`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(3, 4),
-(3, 5),
-(2, 6);
+INSERT INTO `kelurahan` (`idKel`, `namaKel`, `idKec`) VALUES
+(1, 'Kopo', 1),
+(2, 'Sukagalih', 2),
+(3, 'Mekarwangi', 3),
+(4, 'Babakan Ciamis', 4),
+(5, 'Cihapit', 5),
+(6, 'Cigereleng', 6),
+(7, 'Karanganyar', 7),
+(8, 'Babakan Asih', 1),
+(9, 'Babakan Tarogong', 1),
+(10, 'Jamika', 1),
+(11, 'Suka Asih', 1),
+(12, 'Cipedes', 2),
+(13, 'Pasteur', 2),
+(14, 'Sukabungah', 2),
+(15, 'Sukawarna', 2),
+(16, 'Cibaduyut', 3),
+(17, 'Cibaduyut Kidul', 3),
+(18, 'Cibaduyut Wetan', 3),
+(19, 'Kebon Lega', 3),
+(20, 'Situsaeur', 3),
+(21, 'Braga', 4),
+(22, 'Kebonpisang', 4),
+(23, 'Merdeka', 4),
+(24, 'Citarum', 5),
+(25, 'Tamansari', 5),
+(26, 'Ancol', 6),
+(27, 'Balonggede', 6),
+(28, 'Ciateul', 6),
+(29, 'Ciseureuh', 6),
+(30, 'Pasirluyu', 6),
+(31, 'Pungkur', 6),
+(32, 'Cibadak', 7),
+(33, 'Karasak', 7),
+(34, 'Nyengseret', 7),
+(35, 'Panjunan', 7),
+(36, 'Pelindunghewan', 7),
+(37, 'Campaka', 8),
+(38, 'Ciroyom', 8),
+(39, 'Dunguscariang', 8),
+(40, 'Garuda', 8),
+(41, 'Kebonjeruk', 8),
+(42, 'Maleber', 8),
+(43, 'Antapani Kidul', 9),
+(44, 'Antapani Kulon', 9),
+(45, 'Antapani Tengah', 9),
+(46, 'Antapani Wetan', 9),
+(47, 'Cisaranten Bina Harapan', 10),
+(48, 'Cisaranten Endah', 10),
+(49, 'Cisaranten Kulon', 10),
+(50, 'Sukamiskin', 10),
+(51, 'Babakan', 11),
+(52, 'Babakanciparay', 11),
+(53, 'Cirangrang', 11),
+(54, 'Margahayu Utara', 11),
+(55, 'Margasuka', 11),
+(56, 'Sukahaji', 11),
+(57, 'Batununggal', 12),
+(58, 'Kujangsari', 12),
+(59, 'Mengger', 12),
+(60, 'Wates', 12),
+(61, 'Caringin', 13),
+(62, 'Cibuntu', 13),
+(63, 'Cigondewah Kaler', 13),
+(64, 'Cigondewah Kidul', 13),
+(65, 'Cigondewah Rahayu', 13),
+(66, 'Cijerah', 13),
+(67, 'Gempolsari', 13),
+(68, 'Warungmuncang', 13),
+(69, 'Binong', 14),
+(70, 'Cibangkong', 14),
+(71, 'Gumuruh', 14),
+(72, 'Kacapiring', 14),
+(73, 'Kebongedang', 14),
+(74, 'Kebonwaru', 14),
+(75, 'Maleer', 14),
+(76, 'Samoja', 14),
+(77, 'Cijawura', 15),
+(78, 'Jatisari', 15),
+(79, 'Margasari', 15),
+(80, 'Sekejati', 15),
+(81, 'Cigadung', 16),
+(82, 'Cihaeurgeulis', 16),
+(83, 'Neglasari', 16),
+(84, 'Sukaluyu', 16),
+(85, 'Cicadas', 17),
+(86, 'Cikutra', 17),
+(87, 'Padasuka', 17),
+(88, 'Pasirlayung', 17),
+(89, 'Sukamaju', 17),
+(90, 'Sukapada', 17),
+(91, 'Cipadung', 18),
+(92, 'Cisurupan', 18),
+(93, 'Palasari', 18),
+(94, 'Pasirbiru', 18),
+(95, 'Arjuna', 19),
+(96, 'Husen Sastranegara', 19),
+(97, 'Pajajaran', 19),
+(98, 'Pamoyanan', 19),
+(99, 'Pasirkaliki', 19),
+(100, 'Sukaraja', 19),
+(101, 'Ciumbuleuit', 20),
+(102, 'Hegarmanah', 20),
+(103, 'Ledeng', 20),
+(104, 'Babakan Penghulu', 21),
+(105, 'Cisaranten Wetan', 21),
+(106, 'Pakemitan', 21),
+(107, 'Sukamulya', 21),
+(108, 'Cipaganti', 22),
+(109, 'Dago', 22),
+(110, 'Lebakgede', 22),
+(111, 'Lebaksiliwangi', 22),
+(112, 'Sedangserang', 22),
+(113, 'Sekeloa', 22),
+(114, 'Cimincrang', 23),
+(115, 'Cisaranten Kidul', 23),
+(116, 'Rancabolang', 23),
+(117, 'Rancanumpang', 23),
+(118, 'Babakansari', 24),
+(119, 'Babakansurabaya', 24),
+(120, 'Cicaheum', 24),
+(121, 'Compreng', 24),
+(122, 'Kebongkangkung', 24),
+(123, 'Kebunjayanti', 24),
+(124, 'Sukapura', 24),
+(125, 'Burangrang', 25),
+(126, 'Cijagra', 25),
+(127, 'Cikawao', 25),
+(128, 'Lingkar Selatan', 25),
+(129, 'Malabar', 25),
+(130, 'Paledang', 25),
+(131, 'Turangga', 25),
+(132, 'Jatihandap', 26),
+(133, 'Karangpamulang', 26),
+(134, 'Pasir Impun', 26),
+(135, 'Sindangjaya', 26),
+(136, 'Cipadung Kidul', 27),
+(137, 'Cipadung Kulon', 27),
+(138, 'Cipadung Wetan', 27),
+(139, 'Mekarmulya', 27),
+(140, 'Cipamokolan', 28),
+(141, 'Darwati', 28),
+(142, 'Mahjahlega', 28),
+(143, 'Mekar Jaya', 28),
+(144, 'Gegerkalong', 29),
+(145, 'Isola', 29),
+(146, 'Sarijadi', 29),
+(147, 'Sukarasa', 29),
+(148, 'Cigending', 30),
+(149, 'Pasanggrahan', 30),
+(150, 'Pasirendah', 30),
+(151, 'Pasirjati', 30),
+(152, 'Pasirwangi', 30);
 
 -- --------------------------------------------------------
 
@@ -216,20 +361,21 @@ INSERT INTO `scooter` (`NoUnik`, `Warna`, `Tarif`) VALUES
 CREATE TABLE `transaksipengembalian` (
   `noTransaksi` int(11) NOT NULL,
   `waktu_pengembalian` datetime DEFAULT NULL,
-  `noKTP` varchar(16) NOT NULL
+  `noKTP` varchar(16) NOT NULL,
+  `noUnik` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksipengembalian`
 --
 
-INSERT INTO `transaksipengembalian` (`noTransaksi`, `waktu_pengembalian`, `noKTP`) VALUES
-(1, '2020-03-15 12:00:00', '3579762987600020'),
-(2, '2020-03-17 15:00:00', '3928982789862000'),
-(3, '2020-03-17 17:00:00', '3542349800002320'),
-(4, '2020-03-19 19:00:00', '3579762987600020'),
-(5, '2020-03-20 13:00:00', '3928982789862000'),
-(6, '2020-03-22 12:00:00', '3928982789862000');
+INSERT INTO `transaksipengembalian` (`noTransaksi`, `waktu_pengembalian`, `noKTP`, `noUnik`) VALUES
+(1, '2020-03-15 12:00:00', '3579762987600020', 1),
+(2, '2020-03-17 15:00:00', '3928982789862000', 2),
+(3, '2020-03-17 17:00:00', '3542349800002320', 3),
+(4, '2020-03-19 19:00:00', '3579762987600020', 3),
+(5, '2020-03-20 13:00:00', '3928982789862000', 3),
+(6, '2020-03-22 12:00:00', '3928982789862000', 2);
 
 -- --------------------------------------------------------
 
@@ -240,20 +386,21 @@ INSERT INTO `transaksipengembalian` (`noTransaksi`, `waktu_pengembalian`, `noKTP
 CREATE TABLE `transaksipenyewaan` (
   `noTransaksi` int(11) NOT NULL,
   `waktu_mulai` datetime NOT NULL,
-  `noKTP` varchar(16) NOT NULL
+  `noKTP` varchar(16) NOT NULL,
+  `noUnik` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksipenyewaan`
 --
 
-INSERT INTO `transaksipenyewaan` (`noTransaksi`, `waktu_mulai`, `noKTP`) VALUES
-(1, '2020-03-15 10:00:00', '3579762987600020'),
-(2, '2020-03-17 14:00:00', '3928982789862000'),
-(3, '2020-03-17 15:00:00', '3542349800002320'),
-(4, '2020-03-19 17:00:00', '3579762987600020'),
-(5, '2020-03-20 12:00:00', '3928982789862000'),
-(6, '2020-03-22 11:00:00', '3928982789862000');
+INSERT INTO `transaksipenyewaan` (`noTransaksi`, `waktu_mulai`, `noKTP`, `noUnik`) VALUES
+(1, '2020-03-15 10:00:00', '3579762987600020', 1),
+(2, '2020-03-17 14:00:00', '3928982789862000', 2),
+(3, '2020-03-17 15:00:00', '3542349800002320', 3),
+(4, '2020-03-19 17:00:00', '3579762987600020', 3),
+(5, '2020-03-20 12:00:00', '3928982789862000', 3),
+(6, '2020-03-22 11:00:00', '3928982789862000', 2);
 
 --
 -- Indexes for dumped tables
@@ -263,21 +410,14 @@ INSERT INTO `transaksipenyewaan` (`noTransaksi`, `waktu_mulai`, `noKTP`) VALUES
 -- Indexes for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  ADD PRIMARY KEY (`idKec`),
-  ADD KEY `fk_kel-kec` (`idKel`);
+  ADD PRIMARY KEY (`idKec`);
 
 --
 -- Indexes for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
-  ADD PRIMARY KEY (`idKel`);
-
---
--- Indexes for table `memiliki`
---
-ALTER TABLE `memiliki`
-  ADD KEY `fk_scooter-milik` (`noUnik`),
-  ADD KEY `fk_balik-milik` (`noTransaksi`);
+  ADD PRIMARY KEY (`idKel`),
+  ADD KEY `fk_kec-kel` (`idKec`);
 
 --
 -- Indexes for table `mengakses`
@@ -318,14 +458,16 @@ ALTER TABLE `scooter`
 --
 ALTER TABLE `transaksipengembalian`
   ADD KEY `fk_ktp-balik` (`noKTP`),
-  ADD KEY `fk_sewa-balik` (`noTransaksi`);
+  ADD KEY `fk_sewa-balik` (`noTransaksi`),
+  ADD KEY `fk_scooter-balik` (`noUnik`);
 
 --
 -- Indexes for table `transaksipenyewaan`
 --
 ALTER TABLE `transaksipenyewaan`
   ADD PRIMARY KEY (`noTransaksi`),
-  ADD KEY `fk_ktp-sewa` (`noKTP`);
+  ADD KEY `fk_ktp-sewa` (`noKTP`),
+  ADD KEY `fk_scooter-sewa` (`noUnik`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -338,21 +480,20 @@ ALTER TABLE `scooter`
   MODIFY `NoUnik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `transaksipenyewaan`
+--
+ALTER TABLE `transaksipenyewaan`
+  MODIFY `noTransaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `kecamatan`
+-- Constraints for table `kelurahan`
 --
-ALTER TABLE `kecamatan`
-  ADD CONSTRAINT `fk_kel-kec` FOREIGN KEY (`idKel`) REFERENCES `kelurahan` (`idKel`);
-
---
--- Constraints for table `memiliki`
---
-ALTER TABLE `memiliki`
-  ADD CONSTRAINT `fk_balik-milik` FOREIGN KEY (`noTransaksi`) REFERENCES `transaksipenyewaan` (`noTransaksi`),
-  ADD CONSTRAINT `fk_scooter-milik` FOREIGN KEY (`noUnik`) REFERENCES `scooter` (`NoUnik`);
+ALTER TABLE `kelurahan`
+  ADD CONSTRAINT `fk_kec-kel` FOREIGN KEY (`idKec`) REFERENCES `kecamatan` (`idKec`);
 
 --
 -- Constraints for table `mengakses`
@@ -379,13 +520,15 @@ ALTER TABLE `penyewa`
 --
 ALTER TABLE `transaksipengembalian`
   ADD CONSTRAINT `fk_ktp-balik` FOREIGN KEY (`noKTP`) REFERENCES `penyewa` (`NoKTP`),
+  ADD CONSTRAINT `fk_scooter-balik` FOREIGN KEY (`noUnik`) REFERENCES `scooter` (`NoUnik`),
   ADD CONSTRAINT `fk_sewa-balik` FOREIGN KEY (`noTransaksi`) REFERENCES `transaksipenyewaan` (`noTransaksi`);
 
 --
 -- Constraints for table `transaksipenyewaan`
 --
 ALTER TABLE `transaksipenyewaan`
-  ADD CONSTRAINT `fk_ktp-sewa` FOREIGN KEY (`noKTP`) REFERENCES `penyewa` (`NoKTP`);
+  ADD CONSTRAINT `fk_ktp-sewa` FOREIGN KEY (`noKTP`) REFERENCES `penyewa` (`NoKTP`),
+  ADD CONSTRAINT `fk_scooter-sewa` FOREIGN KEY (`noUnik`) REFERENCES `scooter` (`NoUnik`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

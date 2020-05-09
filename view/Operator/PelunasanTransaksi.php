@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <form method="GET" action="pelunasanTransaksi">
+    <form method="GET" action="pelunasan-transaksi-process">
         <div class="flex-form">
             <h1>Pelunasan Transaksi</h1>
             <div class="input">
@@ -24,7 +24,7 @@
             </div>
             <div class="input">
                 <input type="submit" value="Selesai">
-                <input type="submit" value="Kembali">
+                <button onclick="window.location = `./operator`; return false;">Kembali</button>
             </div>
         </div>
     </form>

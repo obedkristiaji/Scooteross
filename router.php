@@ -127,34 +127,55 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             header('Location: scooter-admin');
             break;
         // view laporan transaksi di pimpinan taman
-        case $baseURL . '/laporan-transaksi-pimpinan':
+        case $baseURL . '/laporan-transaksi':
             require_once  "Controller/PimpinanController.php";
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_laporan_transaksi();
             break;
         // view statistik di pimpinan taman
-        case $baseURL . '/statistik-pimpinan' :
+        case $baseURL . '/statistik-penyewaan' :
             require_once "Controller/PimpinanController.php";
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_statistik_pimpinan();
             break;
         // view pendaftaran transaksi di operator
-        case $baseURL . '/pendaftaran-transaksi-operator' :
+        case $baseURL . '/pendaftaran-transaksi' :
             require_once "Controller/OperatorController.php";
             $operatorCtrl = new OperatorController();
             echo $operatorCtrl->view_pendaftaran_transaksi();
             break;
-        // view pendaftaran penyewa di operator
-        case $baseURL . '/pendaftaran-penyewa-operator' :
-            require_once "Controller/OperatorController.php";
-            $operatorCtrl = new OperatorController();
-            echo $operatorCtrl->view_pendaftaran_penyewa();
-            break;
         // view pelunasan transaksi di operator
-        case $baseURL . '/pelunasan-transaksi-operator' :
+        case $baseURL . '/pelunasan-transaksi' :
             require_once "Controller/OperatorController.php";
             $operatorCtrl = new OperatorController();
             echo $operatorCtrl->view_pelunasan_transaksi();
+            break;
+        // daftar penyewa operator
+        case $baseURL . '/daftar-penyewa';
+            require_once "controller/OperatorController.php";
+            $adminCtrl = new OperatorController();
+            echo $adminCtrl->view_daftar_penyewa();
+            break;
+        // proses daftar penyewa operator
+        case $baseURL . '/daftar-penyewa-process':
+            require_once "controller/OperatorController.php";
+            $adminCtrl = new OperatorController();
+            $adminCtrl->daftarPenyewa();
+            header('Location: daftar-penyewa');
+            break;
+        // proses pendaftaran transaksi operator
+        case $baseURL . '/pendaftaran-transaksi-process':
+            require_once "controller/OperatorController.php";
+            $adminCtrl = new OperatorController();
+            $adminCtrl->pendaftaranTransaksi();
+            header('Location: pendaftaran-transaksi');
+            break;
+        // proses pelunasan transaksi operator
+        case $baseURL . '/pelunasan-transaksi-process':
+            require_once "controller/OperatorController.php";
+            $adminCtrl = new OperatorController();
+            $adminCtrl->pelunasanTransaksi();
+            header('Location: pelunasan-transaksi');
             break;
         // default
         default:
