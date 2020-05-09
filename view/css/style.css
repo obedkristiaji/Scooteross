@@ -144,3 +144,8 @@ tr:nth-child(even) {
 tr:nth-child(1) {
     background-color: #A9A9A9;
 }
+
+.navigator{
+    padding : 10px;
+    list-style-type: none;
+}
