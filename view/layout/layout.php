@@ -6,110 +6,80 @@
     <link rel="stylesheet" href="view/css/font-awesome.css">
 </head>
 
-
 <body>
     <header>
         <img src="view/img/Logos.png" alt="Logo" class="logo">
         <?php
+            echo '<div class="flex-nav">';
             if($halamanSekarangNav=='indexAdmin'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./admin">Admin</a></div>';
             }
 
             else if($halamanSekarangNav=='dataPengguna'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin / Data Pengguna'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./admin">Admin</a> / <a class="navigator" href="./data-pengguna">Data Pengguna</a></div>';
             }
 
             else if($halamanSekarangNav=='tambahPengguna'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin / Tambah Pengguna'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./admin">Admin</a> / <a class="navigator" href="./tambah-pengguna">Tambah Pengguna</a></div>';
             }
 
             else if($halamanSekarangNav=='editPengguna'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin / Edit Pengguna'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./admin">Admin</a> / <a class="navigator" href="./edit-pengguna">Edit Pengguna</a></div>';
             }
 
             else if($halamanSekarangNav=='dataScooterAdmin'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin / Data Scooter'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./admin">Admin</a> / <a class="navigator" href="./scooter-admin">Data Scooter</a></div>';
             }
 
             else if($halamanSekarangNav=='tambahScooterAdmin'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin / Tambah Scooter'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./admin">Admin</a> / <a class="navigator" href="./tambah-scooter">Tambah Scooter</a></div>';
             }
 
             else if($halamanSekarangNav=='editTarifAdmin'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Admin / Edit Tarif'.'</li>';
+                echo '<div><a class="navigator" href="./admin">Admin</a> / <a class="navigator" href="./edit-scooter">Edit Tarif</a></div>';
                 echo '</ul>';
             }
 
             else if($halamanSekarangNav=='indexPimpinan'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Pimpinan Taman'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./pimpinan">Pimpinan Taman</a></div>';
             }
 
             else if($halamanSekarangNav=='dataScooterPimpinan'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Pimpinan Taman / Data Scooter'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./pimpinan">Pimpinan Taman</a> / <a class="navigator" href="./scooter-pimpinan">Data Scooter</a></div>';
             }
 
             else if($halamanSekarangNav=='laporanTransaksi'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Pimpinan Taman / Laporan Transaksi'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./pimpinan">Pimpinan Taman</a> / <a class="navigator" href="./laporan-transaksi">Laporan Transaksi</a></div>';
             }
 
             else if($halamanSekarangNav=='statistikPenyewaan'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Pimpinan Taman / Statistik Penyewaan'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./pimpinan">Pimpinan Taman</a> / <a class="navigator" href="./statistik-penyewaan">Statistik Penyewaan</a></div>';
             }
 
             else if($halamanSekarangNav=='indexOperator'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Operator'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./operator">Operator</a></div>';
             }
 
             else if($halamanSekarangNav=='pendaftaranTransaksi'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Operator / Pendaftaran Transaksi'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./operator">Operator</a> / <a class="navigator" href="./pendaftaran-transaksi">Pendaftaran Transaksi</a></div>';
             }
 
             else if($halamanSekarangNav=='pendaftaranPenyewa'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Operator / Daftar Penyewa'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./operator">Operator</a> / <a class="navigator" href="./daftar-penyewa">Pendaftaran Penyewa</a></div>';
             }
 
             else if($halamanSekarangNav=='dataPenyewaOperator'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Operator / Data Penyewa'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./operator">Operator</a> / <a class="navigator" href="./data-penyewa">Data Penyewa</a></div>';
             }
 
             else if($halamanSekarangNav=='pelunasanTransaksi'){
-                echo '<ul class="navigator">';
-                echo '<li>'.'Operator / Pelunasan Transaksi'.'</li>';
-                echo '</ul>';
+                echo '<div><a class="navigator" href="./operator">Operator</a> / <a class="navigator" href="./pelunasan-transaksi">Pelunasan Transaksi</a></div>';
             }
 
             if($halamanSekarangButton=='logout'){
-                echo '<button>Logout</button>';
+                echo '<button class="logout">Logout</button>';
             }
+            echo '</div>';
         ?>
     </header>
     <div class="left">.</div>
