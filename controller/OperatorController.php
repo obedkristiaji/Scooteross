@@ -93,5 +93,21 @@ class OperatorController{
             $this->db->executeNonSelectQuery($query);
         }
     }
+
+    public function view_pendaftaran_transaksi()
+    {
+        return View::createView(
+            '/Operator/PendaftaranTransaksi.php',
+            []
+        );
+    }
+
+    public function view_pelunasan_transaksi()
+    {
+        return View::createView(
+            '/Operator/PelunasanTransaksi.php',
+            []
+        );
+    }
 }
 ?>
