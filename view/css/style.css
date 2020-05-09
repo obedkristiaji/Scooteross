@@ -5,6 +5,7 @@ body {
 .logo {
     width: 200px;
     border-bottom-right-radius: 100%;
+    float: left;
 }
 
 header {
@@ -45,6 +46,7 @@ footer {
 
 .right {
     position: fixed;
+    top: 50px;
     right: 0;
     bottom: 0;
     height: 100%;
@@ -146,11 +148,26 @@ tr:nth-child(1) {
 }
 
 .navigator {
-    padding: 10px;
-    list-style-type: none;
+    text-decoration: none;
+    color: white;
 }
 
 .flex-body>p {
     color: whitesmoke;
     font-size: 30px;
+}
+
+.flex-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.logout {
+    font-size: 15px;
+}
+
+.flex-nav>div {
+    color: white;
 }
