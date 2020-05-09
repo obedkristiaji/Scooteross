@@ -161,4 +161,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo '404 Not Found!';
             break;
     }
+} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    switch ($url) {
+        
+    }
 }

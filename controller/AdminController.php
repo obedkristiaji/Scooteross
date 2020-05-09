@@ -35,7 +35,7 @@ class AdminController
         foreach ($query_result as $key => $value) {
             $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
         }
-        if($_SESSION['nama']){
+        if ($_SESSION['nama']) {
             $nama = $_SESSION['nama'];
             $search = $this->searchPengguna($query, $nama);
             $query_result = $this->db->executeSelectQuery($search);
@@ -164,16 +164,58 @@ class AdminController
         $KTP = $_SESSION['id'];
         $newName = $_GET['newNamePengguna'];
         $newAlamat = $_GET['newAddressPengguna'];
-        $newRole = $_GET['newRoles'];
+        $newEmail = $_GET['newEmailPengguna'];
+        $newPassword = $_GET['newPasswordPengguna'];
+        $newRoles = $_GET['newRoles'];
+        $newKelurahan = $_GET['newKelurahan'];
 
-        if (isset($newName) && isset($newAlamat) && isset($newRole) && $KTP != "" && $newName != "" && $newAlamat != "" && $newRole != "") {
+        $query = "UPDATE pengguna SET";
+
+        if (isset($newName) && $newName != "") {
             $newName = $this->db->escapeString($newName);
-            $newAlamat = $this->db->escapeString($newAlamat);
-            $newRole = $this->db->escapeString($newRole);
-
-            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' WHERE KTP='$KTP'";
-            $this->db->executeNonSelectQuery($query);
+            $query .= " NamaPengguna='$newName'";
         }
+        if (isset($newAlamat) && $newAlamat != "") {
+            $newAlamat = $this->db->escapeString($newAlamat);
+            if ($query == "UPDATE pengguna SET") {
+                $query .= " Alamat='$newAlamat'";
+            } else {
+                $query .= ", Alamat='$newAlamat'";
+            }
+        }
+        if (isset($newEmail) && $newEmail != "") {
+            $newEmail = $this->db->escapeString($newEmail);
+            if ($query == "UPDATE pengguna SET") {
+                $query .= " email='$newEmail'";
+            } else {
+                $query .= ", email='$newEmail'";
+            }
+        }
+        if (isset($newPassword) && $newPassword != "") {
+            $newPassword = $this->db->escapeString($newPassword);
+            if ($query == "UPDATE pengguna SET") {
+                $query .= " password='$newPassword'";
+            } else {
+                $query .= ", password='$newPassword'";
+            }
+        }
+        if (isset($newRoles) && $newRoles != "") {
+            if ($query == "UPDATE pengguna SET") {
+                $query .= " IdRole='$newRoles'";
+            } else {
+                $query .= ", IdRole='$newRoles'";
+            }
+        }
+        if (isset($newKelurahan) && $newKelurahan != "") {
+            if ($query == "UPDATE pengguna SET") {
+                $query .= " idKel='$newKelurahan'";
+            } else {
+                $query .= ", idKel='$newKelurahan'";
+            }
+        }
+
+        $query .= " WHERE KTP='$KTP'";
+        $this->db->executeNonSelectQuery($query);
     }
 
     public function pagination($result, $query)
@@ -246,7 +288,8 @@ class AdminController
         }
     }
 
-    public function searchPengguna($query, $nama){
+    public function searchPengguna($query, $nama)
+    {
         $query .= " WHERE NamaPengguna LIKE '%$nama%";
         return $query;
     }
