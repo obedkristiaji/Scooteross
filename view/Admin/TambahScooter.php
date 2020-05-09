@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'tambahScooterAdmin';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <form method="GET" action="tambah-scooter-process">
         <div class="flex-form">
