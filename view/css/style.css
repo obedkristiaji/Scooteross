@@ -107,6 +107,7 @@ footer {
 
 table {
     min-width: 500px;
+    border-collapse: collapse;
 }
 
 .flex-form {
@@ -128,4 +129,17 @@ table {
 .page-num {
     font-size: 18px;
     display: inline-block;
+}
+
+th,td{
+    text-align : left;
+    padding : 8px;
+}
+
+tr:nth-child(even){
+    background-color: #DCDCDC;
+}
+
+tr:nth-child(1){
+    background-color: #A9A9A9;
 }
