@@ -1,3 +1,7 @@
+<?php
+$halamanSekarangNav = 'pendaftaranTransaksi';
+$halamanSekarangButton = 'logout';
+?>
 <div class="flex-container">
     <form method="GET" action="pendaftaranTransaksi">
         <div class="flex-form">

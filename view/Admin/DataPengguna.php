@@ -1,3 +1,8 @@
+<?php
+$halamanSekarangNav = 'dataPengguna';
+$halamanSekarangButton = 'logout';
+?>
+
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Pengguna</h1>

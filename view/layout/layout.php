@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="view/css/font-awesome.css">
 </head>
 
+<?php
+    if($halamanSekarangButton=='logout'){
+        echo '<button>Logout</button>';
+    }
+?>
 <body>
     <header>
         <img src="view/img/Logos.png" alt="Logo" class="logo">

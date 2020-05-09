@@ -1,3 +1,7 @@
+<?php
+$halamanSekarangNav = 'laporanTransaksi';
+$halamanSekarangButton = 'logout';
+?>
 <div class="flex-container">
     <div class="flex-header">
         <h1>Laporan Transaksi</h1>
