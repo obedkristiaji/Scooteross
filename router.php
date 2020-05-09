@@ -2,6 +2,8 @@
 $url = $_SERVER['REDIRECT_URL'];
 $baseURL = '/scooteross';
 
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     switch ($url) {
         // home page
@@ -105,10 +107,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             break;
         // proses edit scooter admin
         case $baseURL . '/edit-scooter-process':
-            require_once "Contoller/AdminController.php";
+            require_once "Controller/AdminController.php";
             $adminCtrl = new AdminController();
             $adminCtrl->editTarifScooter();
             header('Location: edit-scooter');
+            break;
+        // proses delete pengguna
+        case $baseURL . '/delete-pengguna':
+            require_once "Controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            $adminCtrl->deletePengguna();
+            header('Location: data-pengguna');
+            break;
+        // proses delete scooter
+        case $baseURL . '/delete-scooter':
+            require_once "Controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            $adminCtrl->deleteScooter();
+            header('Location: scooter-admin');
             break;
         // default
         default:

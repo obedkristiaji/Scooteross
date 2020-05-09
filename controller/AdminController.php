@@ -14,6 +14,10 @@ class AdminController
 
     public function view_data_pengguna()
     {
+        if (isset($_GET['searchP'])) {
+            $nama = $_GET['searchP'];
+            $_SESSION['nama'] = $nama;
+        }
         $result = $this->getAllDataPengguna();
         return View::createView(
             '/Admin/dataPengguna.php',
@@ -30,6 +34,15 @@ class AdminController
         $result = [];
         foreach ($query_result as $key => $value) {
             $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
+        }
+        if($_SESSION['nama']){
+            $nama = $_SESSION['nama'];
+            $search = $this->searchPengguna($query, $nama);
+            $query_result = $this->db->executeSelectQuery($search);
+            $result = [];
+            foreach ($query_result as $key => $value) {
+                $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
+            }
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
@@ -120,6 +133,10 @@ class AdminController
     {
         $warnaScooter = $_GET['newColor'];
         $tarif = 20000;
+        if ($_SESSION['tarif']) {
+            $tarif = $_SESSION['tarif'];
+        }
+
         if (
             isset($warnaScooter)  && $warnaScooter != ""
         ) {
@@ -132,6 +149,10 @@ class AdminController
 
     public function view_edit_pengguna()
     {
+        if (isset($_GET['id'])) {
+            $KTP = $_GET['id'];
+            $_SESSION['id'] = $KTP;
+        }
         return View::createView(
             '/Admin/EditPengguna.php',
             []
@@ -140,28 +161,23 @@ class AdminController
 
     public function editPengguna()
     {
-        
+        $KTP = $_SESSION['id'];
         $newName = $_GET['newNamePengguna'];
         $newAlamat = $_GET['newAddressPengguna'];
         $newRole = $_GET['newRoles'];
 
-        if (
-            isset($newName) && isset($newAlamat) && isset($newRole)
-            && $id != "" && $newName != "" && $newAlamat != "" && $newRole != ""
-        ) {
-             
+        if (isset($newName) && isset($newAlamat) && isset($newRole) && $KTP != "" && $newName != "" && $newAlamat != "" && $newRole != "") {
             $newName = $this->db->escapeString($newName);
             $newAlamat = $this->db->escapeString($newAlamat);
             $newRole = $this->db->escapeString($newRole);
 
-            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole'";
+            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' WHERE KTP='$KTP'";
             $this->db->executeNonSelectQuery($query);
         }
     }
 
     public function pagination($result, $query)
     {
-        session_start();
         $_SESSION['i'] = 1;
 
         $start = 0;
@@ -196,15 +212,42 @@ class AdminController
         );
     }
 
-    public function editTarifScooter(){
+    public function editTarifScooter()
+    {
         $newTarif = $_GET['newTarif'];
+        $_SESSION['tarif'] = $newTarif;
 
-        if(isset($newTarif) && $newTarif !=""){
+        if (isset($newTarif) && $newTarif != "") {
             $newTarif = $this->db->escapeString($newTarif);
             $query = "UPDATE scooter SET Tarif='$newTarif'";
             $this->db->executeNonSelectQuery($query);
         }
     }
-}
 
-    
+    public function deletePengguna()
+    {
+        $KTP = $_GET['id'];
+
+        if (isset($KTP) && $KTP != "") {
+            $KTP = $this->db->escapeString($KTP);
+            $query = "DELETE FROM pengguna WHERE KTP='$KTP'";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
+
+    public function deleteScooter()
+    {
+        $noUnik = $_GET['no'];
+
+        if (isset($noUnik) && $noUnik != "") {
+            $noUnik = $this->db->escapeString($noUnik);
+            $query = "DELETE FROM scooter WHERE NoUnik='$noUnik'";
+            $this->db->executeNonSelectQuery($query);
+        }
+    }
+
+    public function searchPengguna($query, $nama){
+        $query .= " WHERE NamaPengguna LIKE '%$nama%";
+        return $query;
+    }
+}

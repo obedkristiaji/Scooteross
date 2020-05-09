@@ -1,7 +1,7 @@
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Pengguna</h1>
-        <form><input type="text" name="search"><input type="submit" value="Cari"></form>
+        <form method="GET" action='./data-pengguna'><input type="text" name="searchP"><input type="submit" value="Cari"></form>
     </div>
     <div class="flex-body">
         <table border="1">
@@ -15,14 +15,24 @@
             </tr>
             <?php
             foreach ($result as $key => $row) {
+                $KTP = $row->getKTPPengguna();
                 echo '
                     <tr>
-                    <td> ' . $row->getKTPPengguna() . ' </td>
-                    <td> ' . $row->getNamaPengguna() . ' </td>
-                    <td> ' . $row->getAlamatPengguna() . ' </td>
-                    <td> ' . $row->getEmailPengguna() . ' </td>
-                    <td> ' . $row->getRole() . ' </td>
-                    <td><form><input type="submit" value="Edit"><input type="submit" value="Hapus"></form></td>
+                        <td> ' . $KTP . ' </td>
+                        <td> ' . $row->getNamaPengguna() . ' </td>
+                        <td> ' . $row->getAlamatPengguna() . ' </td>
+                        <td> ' . $row->getEmailPengguna() . ' </td>
+                        <td> ' . $row->getRole() . ' </td>
+                        <td>
+                            <form method="GET" action="./edit-pengguna" style="display: inline-block;">
+                                <input type="hidden" name="id" value="' . $KTP . '"/>
+                                <input type="submit" value="Edit">
+                            </form>
+                            <form method="GET" action="./delete-pengguna" style="display: inline-block;">
+                                <input type="hidden" name="id" value="' . $KTP . '"/>
+                                <input type="submit" value="Hapus">
+                            </form>
+                        </td>
                     </tr>
                 ';
             }
@@ -31,7 +41,7 @@
     </div>
     <div class="flex-footer">
         <div class="left-footer">
-            <button>Tambah Pengguna</button>
+            <button onclick="window.location = `./tambah-pengguna`">Tambah Pengguna</button>
         </div>
         <div class="right-footer">
             <form method="GET">

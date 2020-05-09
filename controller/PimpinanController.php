@@ -42,7 +42,6 @@ class PimpinanController{
 
     public function pagination($result, $query)
     {
-        session_start();
         $_SESSION['i'] = 1;
 
         $start = 0;
