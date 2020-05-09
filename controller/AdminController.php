@@ -146,26 +146,15 @@ class AdminController
         $newRole = $_GET['newRoles'];
 
         if (
-<<<<<<< HEAD
-            isset($noKTP) && isset($newName) && isset($newAlamat) && isset($newRole)
-            && $noKTP != "" && $id != "" && $newName != "" && $newAlamat != "" && $newRole != ""
-        ) {
-            $noKTP = $this->db->escapeString($noKTP); 
-=======
             isset($newName) && isset($newAlamat) && isset($newRole)
             && $id != "" && $newName != "" && $newAlamat != "" && $newRole != ""
         ) {
              
->>>>>>> 6dd519b1a0251c8f5dd03f22d9165b8a73e200f8
             $newName = $this->db->escapeString($newName);
             $newAlamat = $this->db->escapeString($newAlamat);
             $newRole = $this->db->escapeString($newRole);
 
-<<<<<<< HEAD
-            $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , namaRole='$newRole'";
-=======
             $query = "UPDATE pengguna SET NamaPengguna='$newName' , Alamat='$newAlamat' , Role='$newRole'";
->>>>>>> 6dd519b1a0251c8f5dd03f22d9165b8a73e200f8
             $this->db->executeNonSelectQuery($query);
         }
     }
