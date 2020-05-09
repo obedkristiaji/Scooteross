@@ -1,7 +1,7 @@
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Scooter</h1>
-        <form><input type="text" name="search"><input type="submit" value="Cari"></form>
+        <form method="GET" action='./scooter-admin'><input type="text" name="searchS"><input type="submit" value="Cari"></form>
     </div>
     <div class="flex-body">
         <table border="1">
@@ -13,12 +13,18 @@
             </tr>
             <?php
             foreach ($result as $key => $row) {
+                $NoUnik = $row->getNoUnik();
                 echo '
                     <tr>
-                    <td> ' . $row->getNoUnik() . ' </td>
+                    <td> ' . $NoUnik . ' </td>
                     <td> ' . $row->getWarna() . ' </td>
                     <td> ' . $row->getTarifScooter() . ' </td>
-                    <td><form><input type="submit" value="Hapus"></form></td>
+                    <td>
+                        <form method="GET" action="./delete-scooter" style="display: inline-block;">
+                            <input type="hidden" name="no" value="' . $NoUnik . '"/>
+                            <input type="submit" value="Hapus">
+                        </form>
+                    </td>
                     </tr>
                 ';
             }
@@ -27,8 +33,8 @@
     </div>
     <div class="flex-footer">
         <div class="left-footer">
-            <button>Tambah Scooter</button>
-            <button>Edit Tarif</button>
+            <button onclick="window.location = `./tambah-scooter`">Tambah Scooter</button>
+            <button onclick="window.location = `./edit-scooter`">Edit Tarif</button>
         </div>
         <div class="right-footer">
             <form method="GET">

@@ -32,7 +32,7 @@
             </div>
             <div>
                 <input type="submit" value="Tambah">
-                <input type="submit" value="Kembali">
+                <button onclick="window.location = `./data-pengguna`; return false;">Kembali</button>
             </div>
         </div>
     </form>

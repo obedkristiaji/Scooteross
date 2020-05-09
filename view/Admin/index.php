@@ -1,6 +1,6 @@
 <!-- View Admin -->
     <div class="home-container" method="GET" action="index">
-        <button class="item1">Data Pengguna</button>
-        <button class="item2">Data Scooter</button>
-        <button class="item3">Edit Tarif</button>
+        <button onclick="window.location = `./data-pengguna`" class="item1">Data Pengguna</button>
+        <button onclick="window.location = `./scooter-admin`" class="item2">Data Scooter</button>
+        <button onclick="window.location = `./edit-scooter`" class="item3">Edit Tarif</button>
     </div>

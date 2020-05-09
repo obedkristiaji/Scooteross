@@ -16,7 +16,7 @@
             </div>
             <div class="input">
                 <input type="submit" value="Update">
-                <input type="submit" value="Kembali">
+                <button onclick="window.location = `./data-pengguna`; return false;">Kembali</button>
             </div>
         </div>
     </form>

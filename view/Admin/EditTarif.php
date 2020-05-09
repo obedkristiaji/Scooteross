@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <form method="GET" action="editTarif">
+    <form method="GET" action="edit-scooter-process">
         <div class="flex-form">
             <h1>Edit Tarif</h1>
             <div class="input">
@@ -8,7 +8,7 @@
             </div>
             <div class="input">
                 <input type="submit" value="Update">
-                <input type="submit" value="Kembali">
+                <button  onclick="window.location = `./scooter-admin`; return false;">Kembali</button>
             </div>
         </div>
     </form>

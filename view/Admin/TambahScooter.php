@@ -8,7 +8,7 @@
             </div>
             <div class="input">
                 <input type="submit" value="Tambah">
-                <input type="submit" value="Kembali">
+                <button onclick="window.location = `./scooter-admin`; return false;">Kembali</button>
             </div>
         </div>
     </form>
