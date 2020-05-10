@@ -177,6 +177,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminCtrl->pelunasanTransaksi();
             header('Location: pelunasan-transaksi');
             break;
+        // view home utama 
+        case $baseURL . '/home-utama' :
+            require_once "Controller/HomeController.php";
+            $homeCtrl = new HomeController();
+            echo $homeCtrl->view_home_utama();
+            break;
         // default
         default:
             echo '404 Not Found!';
