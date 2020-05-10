@@ -92,7 +92,7 @@
 
     <div class="right">.</div>
     <footer>.</footer>
-    <script src="view/js/script.js"></script>
+    <script src="view/js/script.js" defer></script>
 </body>
 
 </html>

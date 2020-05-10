@@ -249,3 +249,8 @@ ul {
 li>i {
     padding: 5px;
 }
+
+td>img {
+    height: 30px;
+    width: 30px;
+}

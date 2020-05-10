@@ -19,10 +19,12 @@ $halamanSekarangButton = 'logout';
                 <input type="number" name="duration" required>
             </div>
             <div class="input">
+                <br>
                 <input type="checkbox" name="masukkan" value="KTP" required /> KTP
                 <input type="checkbox" name="masukkan" value="uangMuka" required /> Uang Muka
             </div>
             <div class="input">
+                <br>
                 <input type="submit" value="Input">
                 <button onclick="window.location = `./daftar-penyewa`; return false;">Daftar</button>
                 <button onclick="window.location = `./operator`; return false;">Kembali</button>
