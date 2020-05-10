@@ -25,7 +25,7 @@ $halamanSekarangButton = 'logout';
             </div>
             <div class="input">
                 <p>Password : </p>
-                <input type="text" name="passwordPengguna">
+                <input type="password" name="passwordPengguna">
             </div>
             <div class="input">
                 <p>Id Role : </p>

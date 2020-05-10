@@ -1,15 +1,21 @@
-<div class="flex-container">
-    <form method="GET" action="login">
+<?php
+$halamanSekarangNav = 'login';
+$halamanSekarangButton = '';
+?>
+
+<div id="sign-in">
+    <h2>MASUK</h2>
+    <form method="GET" action="login-process">
         <div class="flex-form">
             <div class="input">
-                <p>Username : </p>
-                <input type="text" name="username">
+                <p>Email : </p>
+                <input type="text" name="username" required>
             </div>
             <div class="input">
                 <p>Password : </p>
-                <input type="number" name="password">
+                <input type="password" name="password" required>
             </div>
-            <input type="submit" value="Masuk">
+            <input class="loginHalamanUtama" id="login" type="submit" value="Masuk">
         </div>
     </form>
 </div>

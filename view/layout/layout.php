@@ -77,7 +77,9 @@
             }
 
             if($halamanSekarangButton=='logout'){
-                echo '<button class="logout">Logout</button>';
+                echo '<form method="GET" action="logout-process">';
+                echo '<input type="submit" class="logout" value="Logout">';
+                echo '</form>';
             }
             echo '</div>';
         ?>

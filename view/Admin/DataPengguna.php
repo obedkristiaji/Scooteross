@@ -16,6 +16,7 @@ $halamanSekarangButton = 'logout';
                 <th>Alamat</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Kelurahan</th>
                 <th>Aksi</th>
             </tr>
             <?php
@@ -28,6 +29,7 @@ $halamanSekarangButton = 'logout';
                         <td> ' . $row->getAlamatPengguna() . ' </td>
                         <td> ' . $row->getEmailPengguna() . ' </td>
                         <td> ' . $row->getRole() . ' </td>
+                        <td> ' . $row->getKel() . ' </td>
                         <td>
                             <form method="GET" action="./edit-pengguna" style="display: inline-block;">
                                 <input type="hidden" name="id" value="' . $KTP . '"/>
