@@ -14,11 +14,7 @@ class HomeController{
         );
     }
 
-    public function view_home(){
-        return View::createView('/Home/index.php',
-        []
-        );
-    }
+    
 
     public function view_home_utama(){
         return View::createView('/Home/homeUtama.php',
