@@ -172,41 +172,80 @@ tr:nth-child(1) {
     color: white;
 }
 
-.kanan {
-    height : 550px;
-    width : 700px;
+.loginHalamanUtama {
+    width: 160px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    margin: 10px;
+}
+
+.flex-bagi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#sign-in {
+    width: 670px;
+    border-radius: 10px;
+    background-color: #5F4B8B;
+    color: white;
+}
+
+#sign-in>form>.flex-form {
+    padding: 10px;
+}
+
+h2 {
+    border-radius: 10px 10px 0 0;
+    background: url("/scooteross/view/img/scooter.jpg") no-repeat center top;
+    margin: 0;
+    color: black;
+    padding: 70px 15px 74px 15px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.profile {
+    max-width: 500px;
 }
 
 .foto {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+    padding: 200px;
+    display: block;
+    position: relative;
 }
 
-.foto:before{
-    content: ' ';
-    display: block;
-    position: absolute;
+.foto::before {
+    content: "";
+    border-radius: 0 10px 10px 0;
+    background: url("/scooteross/view/img/scooter.jpg") no-repeat center top;
+    opacity: 0.5;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    margin-bottom : -15px;
-    margin-right : -650px;
-    background-image: url("/scooteross/view/img/scooter.jpg");
-    opacity : 0.5;
-}
-
-.loginHalamanUtama{
-    margin-bottom : 50px;
-    width : 160px;
-    height : 50px;
-    border-radius: 25px 25px 25px 25px;
-}
-
-.tombolLogin {
+    right: 0;
+    bottom: 0;
     position: absolute;
-    right: 270px;
-    top : 250px;
+    z-index: -1;
+}
+
+.profile>p,
+.profile>h3 {
+    text-align: right;
+}
+
+.profile {
+    background-color: #5F4B8B;
+    color: white;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li>i {
+    padding: 5px;
 }

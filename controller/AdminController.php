@@ -29,11 +29,11 @@ class AdminController
 
     public function getAllDataPengguna()
     {
-        $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole";
+        $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole INNER JOIN kelurahan ON pengguna.idKel = kelurahan.idKel";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
-            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
         }
         if ($_SESSION['nama']) {
             $nama = $_SESSION['nama'];
@@ -41,13 +41,13 @@ class AdminController
             $query_result = $this->db->executeSelectQuery($search);
             $result = [];
             foreach ($query_result as $key => $value) {
-                $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
+                $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
             }
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
-            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole']);
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
         }
         return $result;
     }
