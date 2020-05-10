@@ -6,12 +6,6 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     switch ($url) {
-        // home page
-        case $baseURL . '/index';
-            require_once "controller/HomeController.php";
-            $homeCtrl = new HomeController();
-            echo $homeCtrl->view_home();
-            break;
         // data pengguna admin
         case $baseURL . '/data-pengguna';
             require_once "controller/AdminController.php";
@@ -176,6 +170,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminCtrl = new OperatorController();
             $adminCtrl->pelunasanTransaksi();
             header('Location: pelunasan-transaksi');
+            break;
+        // view home utama 
+        case $baseURL . '/index' :
+            require_once "Controller/HomeController.php";
+            $homeCtrl = new HomeController();
+            echo $homeCtrl->view_home_utama();
             break;
         // default
         default:

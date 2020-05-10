@@ -171,3 +171,42 @@ tr:nth-child(1) {
 .flex-nav>div {
     color: white;
 }
+
+.kanan {
+    height : 550px;
+    width : 700px;
+}
+
+.foto {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.foto:before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-bottom : -15px;
+    margin-right : -650px;
+    background-image: url("/scooteross/view/img/scooter.jpg");
+    opacity : 0.5;
+}
+
+.loginHalamanUtama{
+    margin-bottom : 50px;
+    width : 160px;
+    height : 50px;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.tombolLogin {
+    position: absolute;
+    right: 270px;
+    top : 250px;
+}
