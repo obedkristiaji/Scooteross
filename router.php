@@ -199,5 +199,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     switch ($url) {
+            //upload
+        case $baseURL . '/uploadfile':
+            require_once "controller/OperatorController.php";
+            $operatorCtrl = new OperatorController();
+            echo $operatorCtrl->handle_upload_file();
+            break;
+            // default
+        default:
+            echo '404 Not Found!';
+            break;
     }
 }

@@ -27,13 +27,19 @@ $halamanSekarangButton = 'logout';
                 <input type="number" min="1" max="7" name="kelPenyewa" required>
             </div>
             <div class="input">
-                <p>Upload Foto KTP : </p>
-                <input type="file" placeholder="Choose File" required>
+                <br>
+                <input type="checkbox" required>Upload Foto
             </div>
             <div class="input">
+                <br>
                 <input type="submit" value="Daftar" required>
                 <button onclick="window.location = `./pendaftaran-transaksi`; return false;">Kembali</button>
             </div>
         </div>
+    </form>
+    <form id="formUpload" method="post" action="uploadfile">
+        <br>
+        Foto KTP : <input type="file" name="file">
+        <button id="btn_upload" type="submit">Upload</button>
     </form>
 </div>

@@ -39,7 +39,7 @@ class OperatorController{
             $diff = $date2 - $date1;
             $diff = ceil($diff/3600);
             $biaya = $diff * $tarif;
-            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian']);
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
@@ -49,7 +49,7 @@ class OperatorController{
             $diff = $date2 - $date1;
             $diff = ceil($diff/3600);
             $biaya = $diff * $tarif;
-            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian']);
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         return $result;
     }
@@ -97,14 +97,16 @@ class OperatorController{
         $Alamat = $_GET['addressPenyewa'];
         $Email = $_GET['emailPenyewa'];
         $Kelurahan = $_GET['kelPenyewa'];
+        $foto = $_SESSION['file'];
 
         if(isset($NoKTP) && isset($Nama) && isset($Alamat) && isset($Email) && isset($Kelurahan) && $NoKTP!="" && $Nama!="" && $Alamat!="" && $Email!="" && $Kelurahan!= ""){
             $NoKTP = $this->db->escapeString($NoKTP);
             $Nama = $this->db->escapeString($Nama);
             $Alamat = $this->db->escapeString($Alamat);
             $Email = $this->db->escapeString($Email);
+            $foto = $this->db->escapeString($foto);
 
-            $query = "INSERT INTO penyewa (NoKTP,NamaPenyewa,AlamatPenyewa,email,idKel) VALUES ('$NoKTP','$Nama','$Alamat','$Email','$Kelurahan')";
+            $query = "INSERT INTO penyewa (NoKTP,NamaPenyewa,AlamatPenyewa,email,fotoKTP,idKel) VALUES ('$NoKTP','$Nama','$Alamat','$Email','$foto','$Kelurahan')";
             $this->db->executeNonSelectQuery($query);
         }
     }
@@ -168,5 +170,26 @@ class OperatorController{
             $this->db->executeNonSelectQuery($query);
         }
     }
+
+    public function handle_upload_file()
+	{
+		if ($_SERVER['REQUEST_METHOD'] == "POST") {
+			if ($_FILES['upfile']['name'] != "") {
+				$oldName = $_FILES['upfile']['tmp_name'];
+				$newName = dirname(__DIR__) . "\\uploads\\" . $_FILES['upfile']['name'];
+				if (move_uploaded_file($oldName, $newName)) {
+					echo json_encode([
+						"code" => "success",
+						"location" => $_FILES['upfile']['name']
+					]);
+				} else {
+					echo "Error in uploading";
+				}
+			} else
+				echo "Error: No file uploaded";
+        }
+        
+        $_SESSION['file'] = $_FILES['upfile']['name'];
+	}
 }
 ?>

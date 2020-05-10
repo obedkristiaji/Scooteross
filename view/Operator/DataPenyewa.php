@@ -16,6 +16,7 @@ $halamanSekarangButton = 'logout';
                 <th>Warna</th>
                 <th>Waktu Mulai</th>
                 <th>Waktu Selesai</th>
+                <th>Foto KTP</th>
             </tr>
             <?php
             foreach ($result as $key => $row) {
@@ -26,6 +27,7 @@ $halamanSekarangButton = 'logout';
                 echo "<td>" . $row->getWarna() . "</td>";
                 echo "<td>" . $row->getMulai() . "</td>";
                 echo "<td>" . $row->getSelesai() . "</td>";
+                echo '<td><img src="uploads/'.$row->getfoto().'"></td>';
                 echo "</tr>";
             }
             ?>

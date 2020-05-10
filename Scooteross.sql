@@ -299,6 +299,7 @@ CREATE TABLE `penyewa` (
   `NamaPenyewa` varchar(150) NOT NULL,
   `AlamatPenyewa` varchar(150) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `fotoKTP` varchar(150) NOT NULL,
   `idKel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -306,10 +307,10 @@ CREATE TABLE `penyewa` (
 -- Dumping data for table `penyewa`
 --
 
-INSERT INTO `penyewa` (`NoKTP`, `NamaPenyewa`, `AlamatPenyewa`, `email`, `idKel`) VALUES
-('3542349800002320', 'Britney', 'Jalan Anggrek no 7 Bandung', 'Britney@gmail.com', 5),
-('3579762987600020', 'Rani', 'Jalan Mekar Laksana no 11 Bandung', 'Rani@gmail.com', 3),
-('3928982789862000', 'Keane', 'Jalan Merdeka no 5 Bandung', 'Keane@gmail.com', 4);
+INSERT INTO `penyewa` (`NoKTP`, `NamaPenyewa`, `AlamatPenyewa`, `email`, `fotoKTP`,`idKel`) VALUES
+('3542349800002320', 'Britney', 'Jalan Anggrek no 7 Bandung', 'Britney@gmail.com', 'Screenshot (68).png', 5),
+('3579762987600020', 'Rani', 'Jalan Mekar Laksana no 11 Bandung', 'Rani@gmail.com', 'Screenshot (68).png', 3),
+('3928982789862000', 'Keane', 'Jalan Merdeka no 5 Bandung', 'Keane@gmail.com', 'Screenshot (68).png', 4);
 
 -- --------------------------------------------------------
 

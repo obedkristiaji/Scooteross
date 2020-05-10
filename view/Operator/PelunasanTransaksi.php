@@ -8,7 +8,7 @@ $halamanSekarangButton = 'logout';
             <h1>Pelunasan Transaksi</h1>
             <div class="input">
                 <p>No KTP : </p>
-                <input type="number" name="KTPPenyewa" required>
+                <input type="text" name="KTPPenyewa" required>
             </div>
             <div class="input">
                 <p>No Scooter : </p>
@@ -23,10 +23,12 @@ $halamanSekarangButton = 'logout';
                 <input type="number" name="biayaTambahan" required>
             </div>
             <div class="input">
+                <br>
                 <input type="checkbox" name="masukkan" value="KTP" required /> KTP
                 <input type="checkbox" name="masukkan" value="biayaSewa" required /> Biaya Sewa
             </div>
             <div class="input">
+                <br>
                 <input type="submit" value="Selesai">
                 <button onclick="window.location = `./operator`; return false;">Kembali</button>
             </div>
