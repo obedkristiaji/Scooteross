@@ -32,15 +32,6 @@ class AdminController
         foreach ($query_result as $key => $value) {
             $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
         }
-        if ($_SESSION['nama']) {
-            $nama = $_SESSION['nama'];
-            $search = $this->searchPengguna($query, $nama);
-            $query_result = $this->db->executeSelectQuery($search);
-            $result = [];
-            foreach ($query_result as $key => $value) {
-                $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
-            }
-        }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
