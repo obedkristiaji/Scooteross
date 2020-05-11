@@ -25,7 +25,7 @@ class OperatorController{
         );
     }
 
-    public function getAllDataPenyewa(){
+    /*public function getAllDataPenyewa(){
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -52,7 +52,7 @@ class OperatorController{
             $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         return $result;
-    }
+    }*/
 
     public function getDataPenyewaWithName(){
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";

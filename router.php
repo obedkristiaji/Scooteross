@@ -232,6 +232,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_laporan_transaksi2();
             break;
+            // statistik scooter search 
+        case strpos($url, $baseURL . "/statistik-scooter-search") :
+            require_once "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_statistik_pimpinanS();
+            break;
+            // statistik penyewa search
+        case strpos($url, $baseURL . "/statistik-penyewa-search") :
+            require_once "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_statistik_pimpinanP();
+            break;
             // default
         default:
             echo '404 Not Found!';
