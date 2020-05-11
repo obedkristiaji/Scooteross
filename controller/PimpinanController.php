@@ -3,7 +3,8 @@ require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/Scooter.php";
 require_once "model/Transaksi.php";
-require_once "model/Rank.php";
+require_once "model/RankScooter.php";
+require_once "model/RankPengguna.php";
 class PimpinanController
 {
     protected $db;
@@ -65,7 +66,17 @@ class PimpinanController
 
     public function view_laporan_transaksi()
     {
-        $result = $this->getAllTransaksi();
+        $result = $this->getTransaksiWithNamaDanWarna();
+        return View::createView(
+            '/Pimpinan/laporanTransaksi.php',
+            [
+                "result" => $result
+            ]
+        );
+    }
+
+    public function view_laporan_transaksi2(){
+        $result = $this->getTransaksiWithTanggal();
         return View::createView(
             '/Pimpinan/laporanTransaksi.php',
             [
@@ -96,6 +107,54 @@ class PimpinanController
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
+            if ($value['waktu_pengembalian'] != NULL) {
+                $date1 = strtotime($value['waktu_mulai']);
+                $date2 = strtotime($value['waktu_pengembalian']);
+                $diff = $date2 - $date1;
+                $diff = ceil($diff / 3600);
+                $biaya = $diff * $tarif;
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            }
+        }
+        return $result;
+    }
+
+    public function getTransaksiWithNamaDanWarna(){
+        $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
+        $input = $_GET['search'];
+        if(isset($input) && $input!=""){
+            $input = $this->db->escapeString($input);
+            $query .= " WHERE NamaPenyewa LIKE '%$input%' OR Warna LIKE '%$input%'";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        $tarif = 20000;
+        foreach ($query_result as $key => $value) {
+            if ($value['waktu_pengembalian'] != NULL) {
+                $date1 = strtotime($value['waktu_mulai']);
+                $date2 = strtotime($value['waktu_pengembalian']);
+                $diff = $date2 - $date1;
+                $diff = ceil($diff / 3600);
+                $biaya = $diff * $tarif;
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            }
+        }
+        return $result;
+    }
+
+    public function getTransaksiWithTanggal(){
+        $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
+        $tanggalAwal = $_GET['tanggalAwal'];
+        $tanggalAkhir = $_GET['tanggalAkhir'];
+        if(isset($tanggalAwal) && isset($tanggalAkhir) && $tanggalAwal!="" && $tanggalAkhir!=""){
+            $tanggalAwal = $this->db->escapeString($tanggalAwal);
+            $tanggalAkhir = $this->db->escapeString($tanggalAkhir);
+            $query .= " WHERE waktu_mulai >= $tanggalAwal AND waktu_pengembalian <= tanggalAkhir";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        $tarif = 20000;
+        foreach ($query_result as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
                 $date1 = strtotime($value['waktu_mulai']);
                 $date2 = strtotime($value['waktu_pengembalian']);
