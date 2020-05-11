@@ -7,9 +7,9 @@ $halamanSekarangButton = 'logout';
     <div class="flex-header">
         <h1>Statistik Penyewaan</h1>
         <?php if($_SESSION['indexStat'] == 1): ?>
-        <form><input type="text"><input type="submit" name="searchS" value="Cari"><form>
+        <form method="GET" action="statistik-scooter-search"><input type="text"><input type="submit" name="searchStatS" value="Cari"><form>
         <?php else: ?>
-        <form><input type="text"><input type="submit" name="searchP" value="Cari"><form>
+        <form method="GET" action="statistik-penyewa-search"><input type="text"><input type="submit" name="searchStatP" value="Cari"><form>
         <?php endif ?>
     </div>
     <div class="flex-body">
