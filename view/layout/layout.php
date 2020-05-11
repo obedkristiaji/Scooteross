@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="view/css/style.css">
+    <!-- <link rel="stylesheet" href="view/css/style.css"> -->
     <link rel="stylesheet" href="view/css/font-awesome.css">
 </head>
 
