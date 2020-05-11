@@ -24,7 +24,7 @@ class AdminController
         );
     }
 
-    public function getAllDataPengguna()
+    /*public function getAllDataPengguna()
     {
         $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole INNER JOIN kelurahan ON pengguna.idKel = kelurahan.idKel";
         $query_result = $this->db->executeSelectQuery($query);
@@ -47,7 +47,7 @@ class AdminController
             $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
         }
         return $result;
-    }
+    }*/
 
     public function getDataPenggunaWithName(){
         $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole INNER JOIN kelurahan ON pengguna.idKel = kelurahan.idKel";
@@ -80,7 +80,7 @@ class AdminController
         );
     }
 
-    public function getAllDataScooter()
+    /*public function getAllDataScooter()
     {
         $query = "SELECT * FROM scooter";
         $query_result = $this->db->executeSelectQuery($query);
@@ -94,7 +94,7 @@ class AdminController
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
         return $result;
-    }
+    }*/
 
     public function getDataScooterWithWarna(){
         $query = "SELECT * FROM scooter";
