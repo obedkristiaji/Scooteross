@@ -66,7 +66,7 @@ class AdminController
 
     public function view_data_scooter()
     {
-        $result = $this->getAllDataScooter();
+        $result = $this->getDataScooterWithWarna();
         return View::createView(
             '/Admin/dataScooter.php',
             [
@@ -86,6 +86,21 @@ class AdminController
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
+            $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
+        }
+        return $result;
+    }
+
+    public function getDataScooterWithWarna(){
+        $query = "SELECT * FROM scooter";
+        $Warna = $_GET['searchS'];
+        if(isset($Warna) && $Warna !=""){
+            $Warna = $this->db->escapeString($Warna);
+            $query .= " WHERE Warna LIKE '%$Warna%'";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach($query_result as $key => $value){
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
         return $result;
