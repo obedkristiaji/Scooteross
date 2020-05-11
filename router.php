@@ -130,7 +130,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         case $baseURL . '/statistik-penyewaan':
             require_once "Controller/PimpinanController.php";
             $pimpinanCtrl = new PimpinanController();
-            echo $pimpinanCtrl->view_statistik_pimpinan();
+            if ($_SESSION['indexStat'] == 1) {
+                echo $pimpinanCtrl->view_statistik_pimpinanS();
+            } else {
+                echo $pimpinanCtrl->view_statistik_pimpinanP();
+            }
             break;
             // view pendaftaran transaksi di operator
         case $baseURL . '/pendaftaran-transaksi':
@@ -193,19 +197,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             header('location: ./index');
             break;
             // data pengguna search
-        case strpos($url, $baseURL . "/data-pengguna-search") :
+        case strpos($url, $baseURL . "/data-pengguna-search"):
             require_once "Controller/AdminController.php";
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_data_pengguna();
             break;
             // data scooter search di admin
-        case strpos($url, $baseURL . "/data-scooter-search") :
+        case strpos($url, $baseURL . "/data-scooter-search"):
             require_once "Controller/AdminController.php";
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_data_scooter();
             break;
             // data scooter search di pimpinan
-        case strpos($url, $baseURL . "/data-scooter-pimpinan-search") :
+        case strpos($url, $baseURL . "/data-scooter-pimpinan-search"):
             require_once "Controller/PimpinanController.php";
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_data_scooter();

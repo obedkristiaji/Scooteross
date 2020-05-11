@@ -49,16 +49,17 @@ class PimpinanController
         return $result;
     }
 
-    public function getDataScooterWithWarna(){
+    public function getDataScooterWithWarna()
+    {
         $query = "SELECT * FROM scooter";
         $Warna = $_GET['searchSP'];
-        if(isset($Warna) && $Warna !=""){
+        if (isset($Warna) && $Warna != "") {
             $Warna = $this->db->escapeString($Warna);
             $query .= " WHERE Warna LIKE '%$Warna%'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        foreach($query_result as $key => $value){
+        foreach ($query_result as $key => $value) {
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
         return $result;
@@ -167,7 +168,7 @@ class PimpinanController
         return $result;
     }
 
-    public function view_statistik_pimpinan()
+    public function view_statistik_pimpinanS()
     {
         $result = $this->getRankS();
         return View::createView(
@@ -178,13 +179,45 @@ class PimpinanController
         );
     }
 
+    public function view_statistik_pimpinanP()
+    {
+        $result = $this->getRankP();
+        return View::createView(
+            '/Pimpinan/statistikPenyewaan.php',
+            [
+                "result" => $result
+            ]
+        );
+    }
+
     public function getRankS()
     {
-        $query = "SELECT scooter.NoUnik, COUNT(penyewa.Nama) AS 'rankS' from scooter INNER JOIN memiliki ON scooter.NoUnik = memiliki.NoUnik INNER JOIN transaksipenyewaan ON memiliki.noTransaksi = transaksipenyewaan.noTransaksi INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik";
+        $query = "SELECT scooter.NoUnik, COUNT(penyewa.NamaPenyewa) AS rankS from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik ORDER BY rankS DESC LIMIT 10";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
-            $result[] = new RankScooter($value['NoUnik'], $value['COUNT(penyewa.Nama)']);
+            $result[] = new RankScooter($value['NoUnik'], $value['rankS']);
+        }
+        $_SESSION['indexStat'] = 1;
+        if (isset($_GET['next'])) {
+            $_SESSION['indexStat']++;
+            header("Refresh:0");
+        }
+        return $result;
+    }
+
+    public function getRankP()
+    {
+        $query = "SELECT penyewa.NamaPenyewa, COUNT(scooter.NoUnik) AS rankP from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik ORDER BY rankP DESC LIMIT 10";
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new RankPengguna($value['NamaPenyewa'], $value['rankP']);
+        }
+        $_SESSION['indexStat'] = 2;
+        if (isset($_GET['prev'])) {
+            $_SESSION['indexStat']--;
+            header("Refresh:0");
         }
         return $result;
     }
