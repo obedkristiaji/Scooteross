@@ -192,6 +192,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo $homeCtrl->logout();
             header('location: ./index');
             break;
+            // data pengguna search
+        case strpos($url, $baseURL . "/data-pengguna-search") :
+            require_once "Controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            echo $adminCtrl->view_data_pengguna();
+            break;
             // default
         default:
             echo '404 Not Found!';
