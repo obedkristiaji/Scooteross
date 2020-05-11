@@ -61,6 +61,11 @@ class AdminController
         foreach ($query_result as $key => $value) {
             $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
         }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
+        }
         return $result;
     }
 
@@ -101,6 +106,11 @@ class AdminController
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach($query_result as $key => $value){
+            $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
+        }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
         return $result;
