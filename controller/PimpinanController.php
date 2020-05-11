@@ -135,6 +135,9 @@ class PimpinanController
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         $tarif = 20000;
+        if (isset($_SESSION['tarif'])) {
+            $tarif = $_SESSION['tarif'];
+        }
         foreach ($query_result as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
                 $date1 = strtotime($value['waktu_mulai']);

@@ -64,6 +64,9 @@ class OperatorController{
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         $tarif = 20000;
+        if (isset($_SESSION['tarif'])) {
+            $tarif = $_SESSION['tarif'];
+        }
         foreach ($query_result as $key => $value) {
             $date1 = strtotime($value['waktu_mulai']);
             $date2 = strtotime($value['waktu_pengembalian']);
