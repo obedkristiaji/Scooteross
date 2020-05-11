@@ -59,7 +59,7 @@ class OperatorController{
         $nama = $_GET['search'];
         if(isset($nama) && $nama!=""){
             $nama = $this->db->escapeString($nama);
-            $query .= " WHERE NamaPenyewa LIKE '%$nama%'";
+            $query .= " WHERE NamaPenyewa LIKE '%$nama%' OR penyewa.NoKTP LIKE '%$nama%'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];

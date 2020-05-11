@@ -54,7 +54,7 @@ class AdminController
         $name = $_GET['searchP'];
         if( isset($name) && $name != ""){
             $name = $this->db->escapeString($name);
-            $query .= " WHERE NamaPengguna LIKE '%$name%'";
+            $query .= " WHERE NamaPengguna LIKE '%$name%' OR KTP LIKE '%$name%'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -101,7 +101,7 @@ class AdminController
         $Warna = $_GET['searchS'];
         if(isset($Warna) && $Warna !=""){
             $Warna = $this->db->escapeString($Warna);
-            $query .= " WHERE Warna LIKE '%$Warna%'";
+            $query .= " WHERE Warna LIKE '%$Warna%' OR NoUnik='$Warna'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
