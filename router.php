@@ -198,6 +198,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $adminCtrl = new AdminController();
             echo $adminCtrl->view_data_pengguna();
             break;
+            // data scooter search di admin
+        case strpos($url, $baseURL . "/data-scooter-search") :
+            require_once "Controller/AdminController.php";
+            $adminCtrl = new AdminController();
+            echo $adminCtrl->view_data_scooter();
+            break;
+            // data scooter search di pimpinan
+        case strpos($url, $baseURL . "/data-scooter-pimpinan-search") :
+            require_once "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_data_scooter();
+            break;
             // default
         default:
             echo '404 Not Found!';
