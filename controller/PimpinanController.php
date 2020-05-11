@@ -55,7 +55,7 @@ class PimpinanController
         $Warna = $_GET['searchSP'];
         if (isset($Warna) && $Warna != "") {
             $Warna = $this->db->escapeString($Warna);
-            $query .= " WHERE Warna LIKE '%$Warna%'";
+            $query .= " WHERE Warna LIKE '%$Warna%' OR NoUnik='$Warna'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -130,7 +130,7 @@ class PimpinanController
         $input = $_GET['search'];
         if(isset($input) && $input!=""){
             $input = $this->db->escapeString($input);
-            $query .= " WHERE NamaPenyewa LIKE '%$input%' OR Warna LIKE '%$input%'";
+            $query .= " WHERE NamaPenyewa LIKE '%$input%' OR Warna LIKE '%$input%' OR scooter.NoUnik='$input'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -167,7 +167,7 @@ class PimpinanController
         if(isset($tanggalAwal) && isset($tanggalAkhir) && $tanggalAwal!="" && $tanggalAkhir!=""){
             $tanggalAwal = $this->db->escapeString($tanggalAwal);
             $tanggalAkhir = $this->db->escapeString($tanggalAkhir);
-            $query .= " WHERE waktu_mulai >= $tanggalAwal AND waktu_pengembalian <= tanggalAkhir";
+            $query .= " WHERE waktu_mulai BETWEEN '$tanggalAwal' AND '$tanggalAkhir'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
