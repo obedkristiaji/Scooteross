@@ -6,7 +6,7 @@ $halamanSekarangButton = 'logout';
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Scooter</h1>
-        <form method="GET" action='./scooter-admin'><input type="text" name="searchS"><input type="submit" value="Cari"></form>
+        <form method="GET" action="data-scooter-search"><input type="text" name="searchS"><input type="submit" value="Cari"></form>
     </div>
     <div class="flex-body">
         <table border="1">

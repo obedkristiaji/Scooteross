@@ -14,11 +14,8 @@ class AdminController
 
     public function view_data_pengguna()
     {
-        if (isset($_GET['searchP'])) {
-            $nama = $_GET['searchP'];
-            $_SESSION['nama'] = $nama;
-        }
-        $result = $this->getAllDataPengguna();
+        
+        $result = $this->getDataPenggunaWithName();
         return View::createView(
             '/Admin/dataPengguna.php',
             [
@@ -52,9 +49,24 @@ class AdminController
         return $result;
     }
 
+    public function getDataPenggunaWithName(){
+        $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole INNER JOIN kelurahan ON pengguna.idKel = kelurahan.idKel";
+        $name = $_GET['searchP'];
+        if( isset($name) && $name != ""){
+            $name = $this->db->escapeString($name);
+            $query .= " WHERE NamaPengguna LIKE '%$name%'";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach ($query_result as $key => $value) {
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
+        }
+        return $result;
+    }
+
     public function view_data_scooter()
     {
-        $result = $this->getAllDataScooter();
+        $result = $this->getDataScooterWithWarna();
         return View::createView(
             '/Admin/dataScooter.php',
             [
@@ -74,6 +86,21 @@ class AdminController
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
+            $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
+        }
+        return $result;
+    }
+
+    public function getDataScooterWithWarna(){
+        $query = "SELECT * FROM scooter";
+        $Warna = $_GET['searchS'];
+        if(isset($Warna) && $Warna !=""){
+            $Warna = $this->db->escapeString($Warna);
+            $query .= " WHERE Warna LIKE '%$Warna%'";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        foreach($query_result as $key => $value){
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
         return $result;
