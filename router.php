@@ -210,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_data_scooter();
             break;
-            //default
+            // default
         default:
             echo '404 Not Found!';
             break;
