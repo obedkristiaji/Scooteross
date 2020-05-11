@@ -210,6 +210,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $pimpinanCtrl = new PimpinanController();
             echo $pimpinanCtrl->view_data_scooter();
             break;
+            // laporan transaksi search di pimpinan by nama penyewa dan warna
+        case strpos($url, $baseURL . "/laporan-transaksi-process") :
+            require_once "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_laporan_transaksi();
+            break;
+            // data penyewa search di operator
+        case strpos($url, $baseURL . "/data-penyewa-search") :
+            require_once "Controller/OperatorController.php";
+            $operatorCtrl = new OperatorController();
+            echo $operatorCtrl->view_data_penyewa();
+            break;
+            // laporan transaksi search di pimpinan by date
+        case strpos($url, $baseURL . "/tanggal-search") :
+            require_once "Controller/PimpinanController.php";
+            $pimpinanCtrl = new PimpinanController();
+            echo $pimpinanCtrl->view_laporan_transaksi2();
+            break;
             // default
         default:
             echo '404 Not Found!';

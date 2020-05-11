@@ -5,7 +5,7 @@ $halamanSekarangButton = 'logout';
 <div class="flex-container">
     <div class="flex-header">
         <h1>Laporan Transaksi</h1>
-        <form><input type="text" name="search"><input type="submit" value="Cari"></form>
+        <form method="GET" action="laporan-transaksi-process"><input type="text" name="search"><input type="submit" value="Cari"></form>
     </div>
     <div class="flex-body">
         <table>
@@ -39,7 +39,7 @@ $halamanSekarangButton = 'logout';
     </div>
     <div class="flex-footer">
         <div class="left-footer">
-            <form><label>Tanggal </label><input type="date"><label> - </label><input type="date"><input type="submit" value="Cari"></form>
+            <form method="GET" action="tanggal-search"><label>Tanggal </label><input type="date" name="tanggalAwal"><label> - </label><input type="date" name="tanggalAkhir"><input type="submit" value="Cari"></form>
         </div>
         <div class="right-footer">
             <form method="GET">
