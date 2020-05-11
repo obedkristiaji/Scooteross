@@ -17,7 +17,7 @@ class OperatorController{
     }
 
     public function view_data_penyewa(){
-        $result = $this->getAllDataPenyewa();
+        $result = $this->getDataPenyewaWithName();
         return View::createView('/Operator/dataPenyewa.php',
         [
             "result"=> $result
@@ -44,6 +44,27 @@ class OperatorController{
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
+            $date1 = strtotime($value['waktu_mulai']);
+            $date2 = strtotime($value['waktu_pengembalian']);
+            $diff = $date2 - $date1;
+            $diff = ceil($diff/3600);
+            $biaya = $diff * $tarif;
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+        }
+        return $result;
+    }
+
+    public function getDataPenyewaWithName(){
+        $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
+        $nama = $_GET['search'];
+        if(isset($nama) && $nama!=""){
+            $nama = $this->db->escapeString($nama);
+            $query .= " WHERE NamaPenyewa LIKE '%$nama%'";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        $tarif = 20000;
+        foreach ($query_result as $key => $value) {
             $date1 = strtotime($value['waktu_mulai']);
             $date2 = strtotime($value['waktu_pengembalian']);
             $diff = $date2 - $date1;
