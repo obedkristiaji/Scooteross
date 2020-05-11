@@ -241,6 +241,11 @@ class PimpinanController
         if(isset($noUnik) && $noUnik != ""){
             $noUnik = $this->db->escapeString($noUnik);
             $query .= " WHERE scooter.NoUnik = '$noUnik' GROUP BY scooter.NoUnik ORDER BY rankS DESC LIMIT 10";
+//         $query = "SELECT scooter.NoUnik, COUNT(penyewa.NamaPenyewa) AS rankS from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik ORDER BY rankS DESC LIMIT 10";
+//         $noUnik = $_GET['searchStatS'];
+//         if(isset($noUnik) && $noUnik != ""){
+//             $noUnik = $this->db->escapeString($noUnik);
+//             $query .= " WHERE scooter.NoUnik = '$noUnik'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -279,6 +284,8 @@ class PimpinanController
             $query = " SELECT penyewa.NamaPenyewa, COUNT(scooter.NoUnik) AS rankP from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP WHERE penyewa.NamaPenyewa LIKE '%$nama%' GROUP BY scooter.NoUnik ORDER BY rankP DESC LIMIT 10";
         }
         //$query .= " GROUP BY scooter.NoUnik ORDER BY rankP DESC LIMIT 10";
+//             $query .= " WHERE penyewa.NamaPenyewa LIKE '%$nama%'";
+//         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
