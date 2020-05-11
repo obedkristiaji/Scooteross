@@ -20,8 +20,8 @@ $halamanSekarangButton = 'logout';
                 echo '
                     <tr>
                     <td> '. $num .' </td>
-                    <td> '. $row->getIdScooter() .' </td>
-                    <td> '. $row->getNoTransaksi() .' </td>
+                    <td> '. $row->getNoScooter() .' </td>
+                    <td> '. $row->getjmlS() .' </td>
                     </tr>
                 ';
                 $num++;
@@ -41,8 +41,8 @@ $halamanSekarangButton = 'logout';
                 echo '
                     <tr>
                     <td> '. $num .' </td>
-                    <td> '. $row->getNama() .' </td>
-                    <td> '. $row->getKTP() .' </td>
+                    <td> '. $row->getnama() .' </td>
+                    <td> '. $row->getjmlP() .' </td>
                     </tr>
                 ';
                 $num++;
