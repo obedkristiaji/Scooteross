@@ -62,6 +62,11 @@ class PimpinanController
         foreach ($query_result as $key => $value) {
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
+            $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
+        }
         return $result;
     }
 
@@ -140,6 +145,18 @@ class PimpinanController
                 $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
+            if ($value['waktu_pengembalian'] != NULL) {
+                $date1 = strtotime($value['waktu_mulai']);
+                $date2 = strtotime($value['waktu_pengembalian']);
+                $diff = $date2 - $date1;
+                $diff = ceil($diff / 3600);
+                $biaya = $diff * $tarif;
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            }
+        }
         return $result;
     }
 
@@ -156,6 +173,18 @@ class PimpinanController
         $result = [];
         $tarif = 20000;
         foreach ($query_result as $key => $value) {
+            if ($value['waktu_pengembalian'] != NULL) {
+                $date1 = strtotime($value['waktu_mulai']);
+                $date2 = strtotime($value['waktu_pengembalian']);
+                $diff = $date2 - $date1;
+                $diff = ceil($diff / 3600);
+                $biaya = $diff * $tarif;
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            }
+        }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
                 $date1 = strtotime($value['waktu_mulai']);
                 $date2 = strtotime($value['waktu_pengembalian']);
@@ -199,7 +228,7 @@ class PimpinanController
             $result[] = new RankScooter($value['NoUnik'], $value['rankS']);
         }
         $_SESSION['indexStat'] = 1;
-        if (isset($_GET['next'])) {
+        if (isset($_GET['nextS'])) {
             $_SESSION['indexStat']++;
             header("Refresh:0");
         }
@@ -215,7 +244,7 @@ class PimpinanController
             $result[] = new RankPengguna($value['NamaPenyewa'], $value['rankP']);
         }
         $_SESSION['indexStat'] = 2;
-        if (isset($_GET['prev'])) {
+        if (isset($_GET['prevS'])) {
             $_SESSION['indexStat']--;
             header("Refresh:0");
         }

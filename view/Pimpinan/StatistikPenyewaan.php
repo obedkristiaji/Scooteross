@@ -6,6 +6,11 @@ $halamanSekarangButton = 'logout';
 <div class="flex-container">
     <div class="flex-header">
         <h1>Statistik Penyewaan</h1>
+        <?php if($_SESSION['indexStat'] == 1): ?>
+        <form><input type="text"><input type="submit" name="searchS" value="Cari"><form>
+        <?php else: ?>
+        <form><input type="text"><input type="submit" name="searchP" value="Cari"><form>
+        <?php endif ?>
     </div>
     <div class="flex-body">
         <?php if($_SESSION['indexStat'] == 1): ?>
@@ -54,14 +59,13 @@ $halamanSekarangButton = 'logout';
     </div>
     <div class="flex-footer">
         <div class="left-footer">
-            <form><input type="text"><input type="submit" value="Cari"><form>
         </div>
         <div class="right-footer">
             <form method="GET">
                 <?php
-                echo '<button class="btn" name="prev"><i class="fa fa-angle-left"></i></button>';
+                echo '<button class="btn" name="prevS"><i class="fa fa-angle-left"></i></button>';
                 echo '<p class="page-num"> ' . $_SESSION['indexStat'] . ' </p>';
-                echo '<button class="btn" name="next"><i class="fa fa-angle-right"></i></button>';
+                echo '<button class="btn" name="nextS"><i class="fa fa-angle-right"></i></button>';
                 ?>
             </form>
         </div>

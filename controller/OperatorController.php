@@ -72,37 +72,18 @@ class OperatorController{
             $biaya = $diff * $tarif;
             $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
+            $date1 = strtotime($value['waktu_mulai']);
+            $date2 = strtotime($value['waktu_pengembalian']);
+            $diff = $date2 - $date1;
+            $diff = ceil($diff/3600);
+            $biaya = $diff * $tarif;
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+        }
         return $result;
     }
-
-    public function pagination($result, $query)
-    {
-        $_SESSION['i'] = 1;
-
-        $start = 0;
-        $show = 10;
-        $pageCount = count($result) / $show;
-        $_SESSION['pageCount'] = $pageCount;
-
-        if (isset($_GET['prev']) && $_SESSION['i'] > 1) {
-            $_SESSION['i']--;
-        }
-
-        if (isset($_GET['next']) && $_SESSION['i'] <= $_SESSION['pageCount']) {
-            $_SESSION['i']++;
-        }
-
-
-        $start = $this->db->escapeString($_SESSION['i']) - 1;
-        if ($start != 0) {
-            $start *= 10;
-        }
-
-        $query .= " LIMIT $start, $show";
-        $result = $this->db->executeSelectQuery($query);
-        return $result;
-    }
-
     
     public function view_daftar_penyewa()
     {
@@ -190,6 +171,34 @@ class OperatorController{
             $query = "INSERT INTO transaksipengembalian (noTransaksi,waktu_pengembalian,noKTP,noUnik) VALUES ('$id','$date','$KTP','$IdS')";
             $this->db->executeNonSelectQuery($query);
         }
+    }
+
+    public function pagination($result, $query)
+    {
+        $_SESSION['i'] = 1;
+
+        $start = 0;
+        $show = 10;
+        $pageCount = count($result) / $show;
+        $_SESSION['pageCount'] = $pageCount;
+
+        if (isset($_GET['prev']) && $_SESSION['i'] > 1) {
+            $_SESSION['i']--;
+        }
+
+        if (isset($_GET['next']) && $_SESSION['i'] <= $_SESSION['pageCount']) {
+            $_SESSION['i']++;
+        }
+
+
+        $start = $this->db->escapeString($_SESSION['i']) - 1;
+        if ($start != 0) {
+            $start *= 10;
+        }
+
+        $query .= " LIMIT $start, $show";
+        $result = $this->db->executeSelectQuery($query);
+        return $result;
     }
 
     public function handle_upload_file()
