@@ -3,6 +3,7 @@ require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/Scooter.php";
 require_once "model/Transaksi.php";
+require_once "model/Rank.php";
 class PimpinanController
 {
     protected $db;
@@ -87,9 +88,9 @@ class PimpinanController
                 $date1 = strtotime($value['waktu_mulai']);
                 $date2 = strtotime($value['waktu_pengembalian']);
                 $diff = $date2 - $date1;
-                $diff = ceil($diff/3600);
+                $diff = ceil($diff / 3600);
                 $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         $pagination = $this->pagination($result, $query);
@@ -99,9 +100,9 @@ class PimpinanController
                 $date1 = strtotime($value['waktu_mulai']);
                 $date2 = strtotime($value['waktu_pengembalian']);
                 $diff = $date2 - $date1;
-                $diff = ceil($diff/3600);
+                $diff = ceil($diff / 3600);
                 $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         return $result;
@@ -109,7 +110,7 @@ class PimpinanController
 
     public function view_statistik_pimpinan()
     {
-        $result = $this->getRank();
+        $result = $this->getRankS();
         return View::createView(
             '/Pimpinan/statistikPenyewaan.php',
             [
@@ -118,15 +119,13 @@ class PimpinanController
         );
     }
 
-    public function getRank()
+    public function getRankS()
     {
-        $query = "SELECT scooter.NoUnik, COUNT(penyewa.Nama) AS 'rankS' from scooter INNER JOIN memiliki ON scooter.NoUnik = memiliki.NoUnik INNER JOIN transaksipenyewaan ON memiliki.noTransaksi = transaksipenyewaan.noTransaksi INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik LIMIT 10";
+        $query = "SELECT scooter.NoUnik, COUNT(penyewa.Nama) AS 'rankS' from scooter INNER JOIN memiliki ON scooter.NoUnik = memiliki.NoUnik INNER JOIN transaksipenyewaan ON memiliki.noTransaksi = transaksipenyewaan.noTransaksi INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik";
         $query_result = $this->db->executeSelectQuery($query);
-        $query2 = "SELECT penyewa.Nama, COUNT(scooter.NoUnik) AS 'rankP' from scooter INNER JOIN memiliki ON scooter.NoUnik = memiliki.NoUnik INNER JOIN transaksipenyewaan ON memiliki.noTransaksi = transaksipenyewaan.noTransaksi INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY penyewa.Nama LIMIT 10";
-        $query_result += $this->db->executeSelectQuery($query2);
         $result = [];
         foreach ($query_result as $key => $value) {
-            $result[] = new Transaksi($value['rankS'], $value['rankP'], $value['NamaPenyewa'], $value['NoUnik'], 1, 2, 3, 4);
+            $result[] = new RankScooter($value['NoUnik'], $value['COUNT(penyewa.Nama)']);
         }
         return $result;
     }
