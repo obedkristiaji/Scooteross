@@ -8,11 +8,11 @@ $halamanSekarangButton = 'logout';
         <h1>Statistik Penyewaan</h1>
         <?php if ($_SESSION['indexStat'] == 1) : ?>
             <form method="GET" action="statistik-scooter">
-                <input type="text" name="searchStatS"><input type="submit" value="Cari">
+                <input type="text" name="searchStatS"><input type="submit" value="Cari" class="tombol">
             <form>
         <?php else : ?>
             <form method="GET" action="statistik-penyewa">
-                <input type="text" name="searchStatP"><input type="submit" value="Cari">
+                <input type="text" name="searchStatP"><input type="submit" value="Cari" class="tombol">
             <form>
         <?php endif ?>
     </div>

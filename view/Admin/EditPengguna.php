@@ -32,8 +32,8 @@ $halamanSekarangButton = 'logout';
                 <input type="number" max="7" min="1" name="newKelurahan">
             </div>
             <div class="input">
-                <input type="submit" value="Update">
-                <button onclick="window.location = `./data-pengguna`; return false;">Kembali</button>
+                <input type="submit" value="Update" class="tombol">
+                <button class="tombol" onclick="window.location = `./data-pengguna`; return false;">Kembali</button>
             </div>
         </div>
     </form>
