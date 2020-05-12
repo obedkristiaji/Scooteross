@@ -309,9 +309,9 @@ CREATE TABLE `penyewa` (
 --
 
 INSERT INTO `penyewa` (`NoKTP`, `NamaPenyewa`, `AlamatPenyewa`, `email`, `fotoKTP`,`idKel`) VALUES
-('3542349800002320', 'Britney', 'Jalan Anggrek no 7 Bandung', 'Britney@gmail.com', 'Screenshot (68).png', 5),
-('3579762987600020', 'Rani', 'Jalan Mekar Laksana no 11 Bandung', 'Rani@gmail.com', 'Screenshot (68).png', 3),
-('3928982789862000', 'Keane', 'Jalan Merdeka no 5 Bandung', 'Keane@gmail.com', 'Screenshot (68).png', 4);
+('3542349800002320', 'Britney', 'Jalan Anggrek no 7 Bandung', 'Britney@gmail.com', 'KTP.jpg', 5),
+('3579762987600020', 'Rani', 'Jalan Mekar Laksana no 11 Bandung', 'Rani@gmail.com', 'KTP.jpg', 3),
+('3928982789862000', 'Keane', 'Jalan Merdeka no 5 Bandung', 'Keane@gmail.com', 'KTP.jpg', 4);
 
 -- --------------------------------------------------------
 

@@ -265,11 +265,23 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $role = $_SESSION['role'];
                 header('Location: ' . $role . '');
                 break;
+                //view team profile
+            case $baseURL . '/the-team':
+                require_once "Controller/HomeController.php";
+                $homeCtrl = new HomeController();
+                echo $homeCtrl->view_team();
+                break;
                 // view home utama 
             case $baseURL . '/index':
                 require_once "Controller/HomeController.php";
                 $homeCtrl = new HomeController();
                 echo $homeCtrl->view_home_utama();
+                break;
+                // view about us 
+            case $baseURL . '/about-us':
+                require_once "Controller/HomeController.php";
+                $homeCtrl = new HomeController();
+                echo $homeCtrl->view_about_us();
                 break;
                 // login home
             case $baseURL . '/login';
