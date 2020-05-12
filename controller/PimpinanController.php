@@ -251,7 +251,7 @@ class PimpinanController
             $result[] = new RankScooter($value['NoUnik'], $value['rankS']);
         }
         $_SESSION['indexStat'] = 1;
-        if (isset($_GET['nextS'])) {
+        if (isset($_GET['rankP'])) {
             $_SESSION['indexStat']++;
             header("Refresh:0");
         }
@@ -275,11 +275,11 @@ class PimpinanController
     }*/
 
     public function getRankPWithName(){
-        $query = "SELECT penyewa.NamaPenyewa, COUNT(scooter.NoUnik) AS rankP from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY scooter.NoUnik ORDER BY rankP DESC LIMIT 10";
+        $query = "SELECT penyewa.NamaPenyewa, COUNT(scooter.NoUnik) AS rankP from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP GROUP BY penyewa.NamaPenyewa ORDER BY rankP DESC LIMIT 10";
         $nama = $_GET['searchStatP'];
         if(isset($nama) && $nama != ""){
             $nama = $this->db->escapeString($nama);
-            $query = "SELECT penyewa.NamaPenyewa, COUNT(scooter.NoUnik) AS rankP from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP WHERE penyewa.NamaPenyewa LIKE '%$nama%' GROUP BY scooter.NoUnik ORDER BY rankP DESC LIMIT 10";
+            $query = "SELECT penyewa.NamaPenyewa, COUNT(scooter.NoUnik) AS rankP from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP WHERE penyewa.NamaPenyewa LIKE '%$nama%' GROUP BY penyewa.NamaPenyewa ORDER BY rankP DESC LIMIT 10";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
@@ -287,7 +287,7 @@ class PimpinanController
             $result[] = new RankPengguna($value['NamaPenyewa'], $value['rankP']);
         }
         $_SESSION['indexStat'] = 2;
-        if (isset($_GET['prevS'])) {
+        if (isset($_GET['rankS'])) {
             $_SESSION['indexStat']--;
             header("Refresh:0");
         }

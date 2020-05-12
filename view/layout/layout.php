@@ -53,7 +53,7 @@
             }
 
             else if($halamanSekarangNav=='statistikPenyewaan'){
-                echo '<div><a class="navigator" href="./pimpinan">Pimpinan Taman</a> / <a class="navigator" href="./statistik-penyewaan">Statistik Penyewaan</a></div>';
+                echo '<div><a class="navigator" href="./pimpinan">Pimpinan Taman</a> / <a class="navigator" href="./statistik-scooter">Statistik Penyewaan</a></div>';
             }
 
             else if($halamanSekarangNav=='indexOperator'){
@@ -91,7 +91,7 @@
     </div>
 
     <div class="right">.</div>
-    <footer>.</footer>
+    <footer>© 2020 Scooteross (PT MakmurJaya)</footer>
     <script src="view/js/script.js" defer></script>
 </body>
 

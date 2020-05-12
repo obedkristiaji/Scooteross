@@ -274,6 +274,7 @@ CREATE TABLE `pengguna` (
   `Alamat` varchar(150) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `status` varchar(10) DEFAULT NULL,
   `IdRole` int(11) NOT NULL,
   `idKel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -283,10 +284,10 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`KTP`, `NamaPengguna`, `Alamat`, `email`, `password`, `IdRole`, `idKel`) VALUES
-('3309074509000010', 'Kimberly Natalia', 'Jalan Astana Anyar no 12 Bandung', 'Kimberly@gmail.com', 'user2', 3, 7),
-('3457892345800030', 'Antony Budiman', 'Jalan Sukajadi no 112 Bandung', 'antony97@gmail.com', 'user3', 2, 2),
-('3509749254000000', 'Vivian Cecilia', 'Jalan Kembar no 9 Bandung', 'VivianCel@gmail.com', 'user1', 3, 6),
-('3982178934523000', 'Denny Setiadi', 'Jalan Kopo no 98 Bandung', 'denny@gmail.com', 'user4', 1, 1);
+('3309074509000010', 'Kimberly Natalia', 'Jalan Astana Anyar no 12 Bandung', 'Kimberly@gmail.com', '12345', 3, 7),
+('3457892345800030', 'Antony Budiman', 'Jalan Sukajadi no 112 Bandung', 'antony97@gmail.com', '12345', 2, 2),
+('3509749254000000', 'Vivian Cecilia', 'Jalan Kembar no 9 Bandung', 'VivianCel@gmail.com', '12345', 3, 6),
+('3982178934523000', 'Denny Setiadi', 'Jalan Kopo no 98 Bandung', 'denny@gmail.com', '12345', 1, 1);
 
 -- --------------------------------------------------------
 
