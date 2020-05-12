@@ -33,7 +33,7 @@ $halamanSekarangButton = 'logout';
             </div>
             <div class="input">
                 <p>Id Kelurahan : </p>
-                <input type="number" max="7" min="1" name="kelurahan">
+                <input type="number" max="152" min="1" name="kelurahan">
             </div>
             <div>
                 <input type="submit" value="Tambah" class="tombol">

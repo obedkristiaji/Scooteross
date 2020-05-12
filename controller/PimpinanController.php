@@ -134,30 +134,16 @@ class PimpinanController
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        $tarif = 20000;
-        if (isset($_SESSION['tarif'])) {
-            $tarif = $_SESSION['tarif'];
-        }
         foreach ($query_result as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
-                $date1 = strtotime($value['waktu_mulai']);
-                $date2 = strtotime($value['waktu_pengembalian']);
-                $diff = $date2 - $date1;
-                $diff = ceil($diff / 3600);
-                $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
-                $date1 = strtotime($value['waktu_mulai']);
-                $date2 = strtotime($value['waktu_pengembalian']);
-                $diff = $date2 - $date1;
-                $diff = ceil($diff / 3600);
-                $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         return $result;
@@ -167,34 +153,24 @@ class PimpinanController
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
         $tanggalAwal = $_GET['tanggalAwal'];
         $tanggalAkhir = $_GET['tanggalAkhir'];
+        $tanggalAkhir = date('Y-m-d h:i:s', strtotime('+1 day', strtotime($tanggalAkhir)));
         if(isset($tanggalAwal) && isset($tanggalAkhir) && $tanggalAwal!="" && $tanggalAkhir!=""){
             $tanggalAwal = $this->db->escapeString($tanggalAwal);
             $tanggalAkhir = $this->db->escapeString($tanggalAkhir);
-            $query .= " WHERE waktu_mulai BETWEEN '$tanggalAwal' AND '$tanggalAkhir'";
+            $query .= " WHERE waktu_mulai > '$tanggalAwal' AND waktu_mulai <= '$tanggalAkhir'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        $tarif = 20000;
         foreach ($query_result as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
-                $date1 = strtotime($value['waktu_mulai']);
-                $date2 = strtotime($value['waktu_pengembalian']);
-                $diff = $date2 - $date1;
-                $diff = ceil($diff / 3600);
-                $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
-                $date1 = strtotime($value['waktu_mulai']);
-                $date2 = strtotime($value['waktu_pengembalian']);
-                $diff = $date2 - $date1;
-                $diff = ceil($diff / 3600);
-                $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         return $result;

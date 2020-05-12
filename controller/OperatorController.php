@@ -3,34 +3,42 @@ require_once "controller/services/mysqlDB.php";
 require_once "controller/services/view.php";
 require_once "model/Penyewa.php";
 require_once "model/Transaksi.php";
-class OperatorController{
+class OperatorController
+{
     protected $db;
 
-    public function __construct(){
-        $this->db = new MySQLDB("localhost","root","","scooteross");
+    public function __construct()
+    {
+        $this->db = new MySQLDB("localhost", "root", "", "scooteross");
     }
 
-    public function view_index_operator(){
-        return View::createView('/Operator/index.php',
-        []
+    public function view_index_operator()
+    {
+        return View::createView(
+            '/Operator/index.php',
+            []
         );
     }
 
-    public function view_data_penyewa(){
+    public function view_data_penyewa()
+    {
         $result = $this->getDataPenyewaWithName();
-        return View::createView('/Operator/dataPenyewa.php',
-        [
-            "result"=> $result
-        ]
+        return View::createView(
+            '/Operator/dataPenyewa.php',
+            [
+                "result" => $result
+            ]
         );
     }
 
-    public function view_data_penyewa2(){
+    public function view_data_penyewa2()
+    {
         $result = $this->getDataPenyewaWithTanggal();
-        return View::createView('/Operator/dataPenyewa.php',
-        [
-            "result"=> $result
-        ]
+        return View::createView(
+            '/Operator/dataPenyewa.php',
+            [
+                "result" => $result
+            ]
         );
     }
 
@@ -63,76 +71,48 @@ class OperatorController{
         return $result;
     }*/
 
-    public function getDataPenyewaWithName(){
+    public function getDataPenyewaWithName()
+    {
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
         $nama = $_GET['search'];
-        if(isset($nama) && $nama!=""){
+        if (isset($nama) && $nama != "") {
             $nama = $this->db->escapeString($nama);
             $query .= " WHERE NamaPenyewa LIKE '%$nama%' OR penyewa.NoKTP LIKE '%$nama%'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        $tarif = 20000;
-        if (isset($_SESSION['tarif'])) {
-            $tarif = $_SESSION['tarif'];
-        }
         foreach ($query_result as $key => $value) {
-            $date1 = strtotime($value['waktu_mulai']);
-            $date2 = strtotime($value['waktu_pengembalian']);
-            $diff = $date2 - $date1;
-            $diff = ceil($diff/3600);
-            $biaya = $diff * $tarif;
-            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
-            $date1 = strtotime($value['waktu_mulai']);
-            $date2 = strtotime($value['waktu_pengembalian']);
-            $diff = $date2 - $date1;
-            $diff = ceil($diff/3600);
-            $biaya = $diff * $tarif;
-            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         return $result;
     }
 
-    public function getDataPenyewaWithTanggal(){
+    public function getDataPenyewaWithTanggal()
+    {
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
         $tanggalAwal = $_GET['tanggalAwal2'];
-        $tanggalAkhir = $_GET['tanggalAkhir2'];
-        if(isset($tanggalAwal) && isset($tanggalAkhir) && $tanggalAwal!="" && $tanggalAkhir!=""){
+        if (isset($tanggalAwal) && $tanggalAwal != "") {
             $tanggalAwal = $this->db->escapeString($tanggalAwal);
-            $tanggalAkhir = $this->db->escapeString($tanggalAkhir);
-            $query .= " WHERE waktu_mulai BETWEEN '$tanggalAwal' AND '$tanggalAkhir'";
+            $query .= " WHERE waktu_mulai > '$tanggalAwal'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        $tarif = 20000;
-        if (isset($_SESSION['tarif'])) {
-            $tarif = $_SESSION['tarif'];
-        }
         foreach ($query_result as $key => $value) {
-            $date1 = strtotime($value['waktu_mulai']);
-            $date2 = strtotime($value['waktu_pengembalian']);
-            $diff = $date2 - $date1;
-            $diff = ceil($diff/3600);
-            $biaya = $diff * $tarif;
-            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
-            $date1 = strtotime($value['waktu_mulai']);
-            $date2 = strtotime($value['waktu_pengembalian']);
-            $diff = $date2 - $date1;
-            $diff = ceil($diff/3600);
-            $biaya = $diff * $tarif;
-            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
         }
         return $result;
     }
-    
+
     public function view_daftar_penyewa()
     {
         return View::createView(
@@ -141,7 +121,8 @@ class OperatorController{
         );
     }
 
-    public function daftarPenyewa(){
+    public function daftarPenyewa()
+    {
         $NoKTP = $_GET['KTPPenyewa'];
         $Nama = $_GET['namePenyewa'];
         $Alamat = $_GET['addressPenyewa'];
@@ -149,7 +130,7 @@ class OperatorController{
         $Kelurahan = $_GET['kelPenyewa'];
         $foto = $_SESSION['file'];
 
-        if(isset($NoKTP) && isset($Nama) && isset($Alamat) && isset($Email) && isset($Kelurahan) && $NoKTP!="" && $Nama!="" && $Alamat!="" && $Email!="" && $Kelurahan!= ""){
+        if (isset($NoKTP) && isset($Nama) && isset($Alamat) && isset($Email) && isset($Kelurahan) && $NoKTP != "" && $Nama != "" && $Alamat != "" && $Email != "" && $Kelurahan != "") {
             $NoKTP = $this->db->escapeString($NoKTP);
             $Nama = $this->db->escapeString($Nama);
             $Alamat = $this->db->escapeString($Alamat);
@@ -178,7 +159,7 @@ class OperatorController{
         $date = new DateTime();
         $date = $date->format('Y-m-d h:i:s');
 
-        if(isset($KTP) && isset($IdS) && isset($Durasi) && $KTP!="" && $IdS!="" && $Durasi!=""){
+        if (isset($KTP) && isset($IdS) && isset($Durasi) && $KTP != "" && $IdS != "" && $Durasi != "") {
             $KTP = $this->db->escapeString($KTP);
             $IdS = $this->db->escapeString($IdS);
             $Durasi = $this->db->escapeString($Durasi);
@@ -186,6 +167,10 @@ class OperatorController{
             $query = "INSERT INTO transaksipenyewaan (waktu_mulai,noKTP,noUnik) VALUES ('$date','$KTP','$IdS')";
             $this->db->executeNonSelectQuery($query);
         }
+
+        $date = date('Y-m-d h:i:s', strtotime('+' . $Durasi . ' hour', strtotime($date)));
+        $_SESSION['' . $KTP . ',' . $IdS . ''] = $date;
+        $_SESSION['durasi'] = $Durasi;
     }
 
     public function view_pelunasan_transaksi()
@@ -202,11 +187,10 @@ class OperatorController{
         $IdS = $_GET['noScooter'];
         $Durasi = $_GET['durasiTambahan'];
         $Biaya = $_GET['biayaTambahan'];
-        date_default_timezone_set('Asia/Jakarta');
-        $date = new DateTime();
-        $date = $date->format('Y-m-d h:i:s');
+        $date = $_SESSION['' . $KTP . ',' . $IdS . ''];
+        $date = date('Y-m-d h:i:s', strtotime('+' . $Durasi . ' hour', strtotime($date)));
 
-        if(isset($KTP) && isset($IdS) && isset($Durasi) && $KTP!="" && $IdS!="" && $Durasi!="" && $Biaya!=""){
+        if (isset($KTP) && isset($IdS) && isset($Durasi) && $KTP != "" && $IdS != "" && $Durasi != "" && $Biaya != "") {
             $KTP = $this->db->escapeString($KTP);
             $IdS = $this->db->escapeString($IdS);
             $Durasi = $this->db->escapeString($Durasi);
@@ -216,7 +200,18 @@ class OperatorController{
             $row = mysqli_fetch_row($temp_res);
             $id = $row[0];
 
-            $query = "INSERT INTO transaksipengembalian (noTransaksi,waktu_pengembalian,noKTP,noUnik) VALUES ('$id','$date','$KTP','$IdS')";
+            $temp = "SELECT Tarif FROM scooter WHERE NoUnik = 1";
+            $temp_res = $this->db->executeNonSelectQuery($temp);
+            $row = mysqli_fetch_row($temp_res);
+            $tarif = $row[0];
+            
+            if ($_SESSION['durasi'] > 1) {
+                $Biaya = $Biaya + ($tarif * $_SESSION['durasi']);
+            } else {
+                $Biaya = $Biaya + $tarif;
+            }
+
+            $query = "INSERT INTO transaksipengembalian (noTransaksi,waktu_pengembalian,biaya,noKTP,noUnik) VALUES ('$id','$date','$Biaya','$KTP','$IdS')";
             $this->db->executeNonSelectQuery($query);
         }
     }
@@ -250,24 +245,23 @@ class OperatorController{
     }
 
     public function handle_upload_file()
-	{
-		if ($_SERVER['REQUEST_METHOD'] == "POST") {
-			if ($_FILES['upfile']['name'] != "") {
-				$oldName = $_FILES['upfile']['tmp_name'];
-				$newName = dirname(__DIR__) . "\\uploads\\" . $_FILES['upfile']['name'];
-				if (move_uploaded_file($oldName, $newName)) {
-					echo json_encode([
-						"code" => "success",
-						"location" => $_FILES['upfile']['name']
-					]);
-				} else {
-					echo "Error in uploading";
-				}
-			} else
-				echo "Error: No file uploaded";
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if ($_FILES['upfile']['name'] != "") {
+                $oldName = $_FILES['upfile']['tmp_name'];
+                $newName = dirname(__DIR__) . "\\uploads\\" . $_FILES['upfile']['name'];
+                if (move_uploaded_file($oldName, $newName)) {
+                    echo json_encode([
+                        "code" => "success",
+                        "location" => $_FILES['upfile']['name']
+                    ]);
+                } else {
+                    echo "Error in uploading";
+                }
+            } else
+                echo "Error: No file uploaded";
         }
-        
+
         $_SESSION['file'] = $_FILES['upfile']['name'];
-	}
+    }
 }
-?>
