@@ -67,11 +67,11 @@ $halamanSekarangButton = 'logout';
         <div class="right-footer">
             <?php if ($_SESSION['indexStat'] == 1) : ?>
                 <form method="GET">
-                    <button onclick="window.location = `./statistik-penyewa`; return false;" type="submit" name="rankP">Statistik Penyewa</button>
+                    <button onclick="window.location = `./statistik-penyewa`; return false;" type="submit" name="rankP" class="tombol">Statistik Penyewa</button>
                 </form>
             <?php else : ?>
                 <form method="GET">
-                    <button onclick="window.location = `./statistik-scooter`; return false;" type="submit" name="rankP">Statistik Scooter</button>
+                    <button onclick="window.location = `./statistik-scooter`; return false;" type="submit" name="rankP" class="tombol">Statistik Scooter</button>
                 </form>
             <?php endif ?>
         </div>
