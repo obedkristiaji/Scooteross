@@ -12,8 +12,8 @@ $halamanSekarangButton = 'logout';
                 <input type="number" name="newTarif">
             </div>
             <div class="input">
-                <input type="submit" value="Update">
-                <button  onclick="window.location = `./scooter-admin`; return false;">Kembali</button>
+                <input type="submit" value="Update" class="tombol">
+                <button class="tombol" onclick="window.location = `./scooter-admin`; return false;">Kembali</button>
             </div>
         </div>
     </form>

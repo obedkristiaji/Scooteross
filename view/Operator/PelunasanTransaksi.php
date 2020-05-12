@@ -24,13 +24,13 @@ $halamanSekarangButton = 'logout';
             </div>
             <div class="input">
                 <br>
-                <input type="checkbox" name="masukkan" value="KTP" required /> KTP
-                <input type="checkbox" name="masukkan" value="biayaSewa" required /> Biaya Sewa
+                <input type="checkbox" name="masukkan" value="KTP" class="tombol" required /> KTP
+                <input type="checkbox" name="masukkan" value="biayaSewa" class="tombol" required /> Biaya Sewa
             </div>
             <div class="input">
                 <br>
-                <input type="submit" value="Selesai">
-                <button onclick="window.location = `./operator`; return false;">Kembali</button>
+                <input type="submit" value="Selesai" class="tombol">
+                <button class="tombol" onclick="window.location = `./operator`; return false;">Kembali</button>
             </div>
         </div>
     </form>
