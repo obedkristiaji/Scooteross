@@ -1,5 +1,6 @@
 body {
     background-color: #E69A8D;
+    font-family: Nunito-Regular;
 }
 
 .logo {
@@ -83,7 +84,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     background-color: whitesmoke;
-    padding: 7px;
+    padding: 20px;
     border-radius: 12px;
 }
 
@@ -105,7 +106,7 @@ footer {
 }
 
 table {
-    min-width: 400px;
+    min-width: 500px;
     border-collapse: collapse;
 }
 
@@ -162,7 +163,11 @@ tr:nth-child(1) {
 }
 
 .logout {
-    font-size: 15px;
+    font-size: 13px;
+    border-radius: 15px 15px 15px 15px;
+    border: none;
+    font-family: Nunito-Regular;
+    padding: 5px;
 }
 
 .flex-nav>div {
@@ -175,6 +180,8 @@ tr:nth-child(1) {
     border-radius: 25px;
     border: none;
     margin: 10px;
+    font-size: 17px;
+    font-family: Nunito-Regular;
 }
 
 .flex-bagi {
@@ -253,29 +260,26 @@ td>img {
 }
 
 @font-face {
-    font-family : concertone-regular;
-    src : url("/scooteross/view/fonts/concertone-regular.ttf");
+    font-family: Nunito-Regular;
+    src: url("/scooteross/view/fonts/Nunito-Regular.ttf");
 }
 
-.home-container button{
+@font-face {
     font-family: concertone-regular;
-    font-size : 20px;
+    src: url("/scooteross/view/fonts/concertone-regular.ttf");
 }
 
-h1{
-    font-family: concertone-regular;
+.home-container button {
+    font-size: 20px;
 }
 
-th,td{
-    font-family: concertone-regular;
-}
-
-.tombol{
-    font-family: concertone-regular;
+.tombol {
     border-radius: 15px 15px 15px 15px;
-    font-size : 17px;
+    padding: 5px;
+    font-size: 17px;
+    font-family: Nunito-Regular;
 }
 
-p{
-    font-family: concertone-regular;
+.flex-header>form {
+    padding-top: 30px;
 }
