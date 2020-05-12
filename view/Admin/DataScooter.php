@@ -6,7 +6,7 @@ $halamanSekarangButton = 'logout';
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Scooter</h1>
-        <form method="GET" action="data-scooter-search"><input type="text" name="searchS"><input type="submit" value="Cari"></form>
+        <form method="GET" action="data-scooter-search"><input type="text" name="searchS"><input type="submit" value="Cari" class="tombol"></form>
     </div>
     <div class="flex-body">
         <table border="1">
@@ -27,7 +27,7 @@ $halamanSekarangButton = 'logout';
                     <td>
                         <form method="GET" action="./delete-scooter" style="display: inline-block;">
                             <input type="hidden" name="no" value="' . $NoUnik . '"/>
-                            <input type="submit" value="Hapus">
+                            <input type="submit" value="Hapus" class="tombol">
                         </form>
                     </td>
                     </tr>
@@ -38,8 +38,8 @@ $halamanSekarangButton = 'logout';
     </div>
     <div class="flex-footer">
         <div class="left-footer">
-            <button onclick="window.location = `./tambah-scooter`">Tambah Scooter</button>
-            <button onclick="window.location = `./edit-scooter`">Edit Tarif</button>
+            <button class="tombol" onclick="window.location = `./tambah-scooter`">Tambah Scooter</button>
+            <button class="tombol" onclick="window.location = `./edit-scooter`">Edit Tarif</button>
         </div>
         <div class="right-footer">
             <form method="GET">

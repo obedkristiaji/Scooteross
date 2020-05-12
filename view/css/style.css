@@ -251,3 +251,30 @@ td>img {
     height: 30px;
     width: 30px;
 }
+
+@font-face {
+    font-family : concertone-regular;
+    src : url("/scooteross/view/fonts/concertone-regular.ttf");
+}
+
+.home-container button{
+    font-family: concertone-regular;
+    font-size : 20px;
+}
+
+h1{
+    font-family: concertone-regular;
+}
+
+th,td{
+    font-family: concertone-regular;
+}
+
+.tombol{
+    font-family: concertone-regular;
+    border-radius: 15px 15px 15px 15px;
+}
+
+p{
+    font-family: concertone-regular;
+}

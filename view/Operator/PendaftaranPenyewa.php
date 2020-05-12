@@ -32,14 +32,14 @@ $halamanSekarangButton = 'logout';
             </div>
             <div class="input">
                 <br>
-                <input type="submit" value="Daftar" required>
-                <button onclick="window.location = `./pendaftaran-transaksi`; return false;">Kembali</button>
+                <input type="submit" value="Daftar" class="tombol" required>
+                <button class="tombol" onclick="window.location = `./pendaftaran-transaksi`; return false;">Kembali</button>
             </div>
         </div>
     </form>
     <form id="formUpload" method="post" action="uploadfile">
         <br>
-        Foto KTP : <input type="file" name="file">
-        <button id="btn_upload" type="submit">Upload</button>
+        <div class="tombol">Foto KTP : </div><input type="file" name="file" class="tombol">
+        <button class="tombol" id="btn_upload" type="submit">Upload</button>
     </form>
 </div>

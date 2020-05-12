@@ -12,8 +12,8 @@ $halamanSekarangButton = 'logout';
                 <input type="text" name="newColor">
             </div>
             <div class="input">
-                <input type="submit" value="Tambah">
-                <button onclick="window.location = `./scooter-admin`; return false;">Kembali</button>
+                <input type="submit" value="Tambah" class="tombol">
+                <button class="tombol" onclick="window.location = `./scooter-admin`; return false;">Kembali</button>
             </div>
         </div>
     </form>

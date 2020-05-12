@@ -35,11 +35,11 @@ $halamanSekarangButton = 'logout';
                         <td>
                             <form method="GET" action="./edit-pengguna" style="display: inline-block;">
                                 <input type="hidden" name="id" value="' . $KTP . '"/>
-                                <input type="submit" value="Edit">
+                                <input type="submit" value="Edit" class="tombol">
                             </form>
                             <form method="GET" action="./delete-pengguna" style="display: inline-block;">
                                 <input type="hidden" name="id" value="' . $KTP . '"/>
-                                <input type="submit" value="Hapus">
+                                <input type="submit" value="Hapus" class="tombol">
                             </form>
                         </td>
                     </tr>
@@ -50,7 +50,7 @@ $halamanSekarangButton = 'logout';
     </div>
     <div class="flex-footer">
         <div class="left-footer">
-            <button onclick="window.location = `./tambah-pengguna`">Tambah Pengguna</button>
+            <button class="tombol" onclick="window.location = `./tambah-pengguna`">Tambah Pengguna</button>
         </div>
         <div class="right-footer">
             <form method="GET">
