@@ -4,7 +4,16 @@ $halamanSekarangButton = '';
 ?>
 <div class="flex-bagi">
     <div class="profile">
-        <h3>ABOUT US</h3>
+        <h3><q>I bought an electric scooter in sixth grade. Bankrupted me.</q></h3>
+        <p>Zac Efron</p>
+
+        <br>
+        <p>
+            Sekarang kalian tidak perlu lagi membeli scooter dan menghabiskan banyak uang
+            seperti Zac Efron. Karena disini, kami menyewakan scooter-scooter terbaik dengan
+            harga terbaik untuk dompet kalian:)
+        </p>
+        <!-- <h3>ABOUT US</h3>
         <p>
             Bandung merupakan salah satu kota besar di Indonesia dengan tingkat
             pariwisatanya yang tinggi. Bandung terkenal dengan keindahan kotanya serta
@@ -37,7 +46,7 @@ $halamanSekarangButton = '';
         <br>
         <p>
             © 2020 Scooteross (PT MakmurJaya)
-        </p>
+        </p> -->
     </div>
     <div class="foto">
         <button onclick="window.location = `./login`" class="loginHalamanUtama">Login</button>
