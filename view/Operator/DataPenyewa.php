@@ -5,7 +5,7 @@ $halamanSekarangButton = 'logout';
 <div class="flex-container">
     <div class="flex-header">
         <h1>Data Penyewa</h1>
-        <form method="GET" action="data-penyewa-search"><input type="text" name="search"><input type="submit" value="Cari"></form>
+        <form method="GET" action="data-penyewa-search"><input type="text" name="search" class="tombol"><input type="submit" value="Cari" class="tombol"></form>
     </div>
     <div class="flex-body">
         <table border="1">

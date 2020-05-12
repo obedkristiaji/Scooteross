@@ -25,9 +25,9 @@ $halamanSekarangButton = 'logout';
             </div>
             <div class="input">
                 <br>
-                <input type="submit" value="Input">
-                <button onclick="window.location = `./daftar-penyewa`; return false;">Daftar</button>
-                <button onclick="window.location = `./operator`; return false;">Kembali</button>
+                <input type="submit" value="Input" class="tombol">
+                <button class="tombol" onclick="window.location = `./daftar-penyewa`; return false;">Daftar</button>
+                <button class="tombol" onclick="window.location = `./operator`; return false;">Kembali</button>
             </div>
         </div>
     </form>
