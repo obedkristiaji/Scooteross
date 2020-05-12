@@ -138,11 +138,11 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #DCDCDC;
+    background-color: #D6CFC7;
 }
 
 tr:nth-child(1) {
-    background-color: #A9A9A9;
+    background-color: #7F461B;
 }
 
 .navigator {
