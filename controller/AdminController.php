@@ -50,12 +50,12 @@ class AdminController
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($query_result as $key => $value) {
-            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel'], $value['status']);
         }
         $pagination = $this->pagination($result, $query);
         $result = [];
         foreach ($pagination as $key => $value) {
-            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel']);
+            $result[] = new Pengguna($value['KTP'], $value['NamaPengguna'], $value['Alamat'], $value['email'], $value['namaRole'], $value['namaKel'], $value['status']);
         }
         return $result;
     }
@@ -144,7 +144,7 @@ class AdminController
             $Role = $this->db->escapeString($Role);
             $Kelurahan = $this->db->escapeString($Kelurahan);
 
-            $query = "INSERT INTO pengguna VALUES ('$KTPPengguna','$namaPengguna','$alamatPengguna','$emailPengguna','$passwordPengguna','$Role','$Kelurahan')";
+            $query = "INSERT INTO pengguna (KTP,NamaPengguna,Alamat,email,password,IdRole,idKel) VALUES ('$KTPPengguna','$namaPengguna','$alamatPengguna','$emailPengguna','$passwordPengguna','$Role','$Kelurahan')";
             $this->db->executeNonSelectQuery($query);
         }
     }

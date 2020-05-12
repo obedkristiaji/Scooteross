@@ -6,14 +6,16 @@
         public $EmailPengguna;
         public $Role;
         public $Kel;
+        public $status;
 
-        public function __construct($KTPPengguna,$NamaPengguna,$AlamatPengguna,$EmailPengguna, $Role, $Kel){
+        public function __construct($KTPPengguna,$NamaPengguna,$AlamatPengguna,$EmailPengguna, $Role, $Kel, $status){
             $this->KTPPengguna = $KTPPengguna;
             $this->NamaPengguna = $NamaPengguna;
             $this->AlamatPengguna = $AlamatPengguna;
             $this->EmailPengguna = $EmailPengguna;
             $this->Role = $Role;
             $this->Kel = $Kel;
+            $this->status = $status;
         }
 
         public function getKTPPengguna(){
@@ -38,6 +40,14 @@
 
         public function getKel() {
             return $this->Kel;
+        }
+
+        public function getStatus() {
+            if($this->status == 'Active'){
+                return 'Active';
+            } else {
+                return 'Inactive';
+            }
         }
     }
 ?>

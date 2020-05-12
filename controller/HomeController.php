@@ -44,10 +44,16 @@ class HomeController
         } else {
             $_SESSION['role'] = 'login';
         }
+
+        $query = "UPDATE pengguna SET status='Active' WHERE email='$uname'";
+        $query_result = $this->db->executeSelectQuery($query);
     }
 
     public function logout()
 	{
+        $uname = $_SESSION['username'];
+        $query = "UPDATE pengguna SET status=NULL WHERE email='$uname'";
+        $query_result = $this->db->executeSelectQuery($query);
 		session_destroy();
 	}
 

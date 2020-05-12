@@ -25,6 +25,15 @@ class OperatorController{
         );
     }
 
+    public function view_data_penyewa2(){
+        $result = $this->getDataPenyewaWithTanggal();
+        return View::createView('/Operator/dataPenyewa.php',
+        [
+            "result"=> $result
+        ]
+        );
+    }
+
     /*public function getAllDataPenyewa(){
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
         $query_result = $this->db->executeSelectQuery($query);
@@ -60,6 +69,42 @@ class OperatorController{
         if(isset($nama) && $nama!=""){
             $nama = $this->db->escapeString($nama);
             $query .= " WHERE NamaPenyewa LIKE '%$nama%' OR penyewa.NoKTP LIKE '%$nama%'";
+        }
+        $query_result = $this->db->executeSelectQuery($query);
+        $result = [];
+        $tarif = 20000;
+        if (isset($_SESSION['tarif'])) {
+            $tarif = $_SESSION['tarif'];
+        }
+        foreach ($query_result as $key => $value) {
+            $date1 = strtotime($value['waktu_mulai']);
+            $date2 = strtotime($value['waktu_pengembalian']);
+            $diff = $date2 - $date1;
+            $diff = ceil($diff/3600);
+            $biaya = $diff * $tarif;
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+        }
+        $pagination = $this->pagination($result, $query);
+        $result = [];
+        foreach ($pagination as $key => $value) {
+            $date1 = strtotime($value['waktu_mulai']);
+            $date2 = strtotime($value['waktu_pengembalian']);
+            $diff = $date2 - $date1;
+            $diff = ceil($diff/3600);
+            $biaya = $diff * $tarif;
+            $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+        }
+        return $result;
+    }
+
+    public function getDataPenyewaWithTanggal(){
+        $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik LEFT OUTER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
+        $tanggalAwal = $_GET['tanggalAwal2'];
+        $tanggalAkhir = $_GET['tanggalAkhir2'];
+        if(isset($tanggalAwal) && isset($tanggalAkhir) && $tanggalAwal!="" && $tanggalAkhir!=""){
+            $tanggalAwal = $this->db->escapeString($tanggalAwal);
+            $tanggalAkhir = $this->db->escapeString($tanggalAkhir);
+            $query .= " WHERE waktu_mulai BETWEEN '$tanggalAwal' AND '$tanggalAkhir'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];

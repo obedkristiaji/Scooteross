@@ -35,6 +35,7 @@ $halamanSekarangButton = 'logout';
     </div>
     <div class="flex-footer">
         <div class="left-footer">
+            <form method="GET" action="tanggal2-search"><label>Tanggal </label><input type="date" name="tanggalAwal2"><label> - </label><input type="date" name="tanggalAkhir2"> <input type="submit" value="Cari"></form>
         </div>
         <div class="right-footer">
             <form method="GET">
