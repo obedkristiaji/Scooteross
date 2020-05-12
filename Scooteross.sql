@@ -363,6 +363,7 @@ INSERT INTO `scooter` (`NoUnik`, `Warna`, `Tarif`) VALUES
 CREATE TABLE `transaksipengembalian` (
   `noTransaksi` int(11) NOT NULL,
   `waktu_pengembalian` datetime DEFAULT NULL,
+  `biaya` int(11) NOT NULL,
   `noKTP` varchar(16) NOT NULL,
   `noUnik` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -371,13 +372,13 @@ CREATE TABLE `transaksipengembalian` (
 -- Dumping data for table `transaksipengembalian`
 --
 
-INSERT INTO `transaksipengembalian` (`noTransaksi`, `waktu_pengembalian`, `noKTP`, `noUnik`) VALUES
-(1, '2020-03-15 12:00:00', '3579762987600020', 1),
-(2, '2020-03-17 15:00:00', '3928982789862000', 2),
-(3, '2020-03-17 17:00:00', '3542349800002320', 3),
-(4, '2020-03-19 19:00:00', '3579762987600020', 3),
-(5, '2020-03-20 13:00:00', '3928982789862000', 3),
-(6, '2020-03-22 12:00:00', '3928982789862000', 2);
+INSERT INTO `transaksipengembalian` (`noTransaksi`, `waktu_pengembalian`, `biaya`, `noKTP`, `noUnik`) VALUES
+(1, '2020-03-15 12:00:00', '40000', '3579762987600020', 1),
+(2, '2020-03-17 15:00:00', '20000', '3928982789862000', 2),
+(3, '2020-03-17 17:00:00', '40000', '3542349800002320', 3),
+(4, '2020-03-19 19:00:00', '40000', '3579762987600020', 3),
+(5, '2020-03-20 13:00:00', '20000', '3928982789862000', 3),
+(6, '2020-03-22 12:00:00', '20000', '3928982789862000', 2);
 
 -- --------------------------------------------------------
 
