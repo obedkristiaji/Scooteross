@@ -23,6 +23,22 @@ class HomeController
         );
     }
 
+    public function view_team()
+    {
+        return View::createView(
+            '/Home/profile.php',
+            []
+        );
+    }
+
+    public function view_about_us()
+    {
+        return View::createView(
+            '/Home/aboutUs.php',
+            []
+        );
+    }
+
     public function login()
     {
         $uname = $_GET['username'];
