@@ -136,17 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $pimpinanCtrl = new PimpinanController();
                 echo $pimpinanCtrl->view_laporan_transaksi();
                 break;
-                // view statistik di pimpinan taman
-                // case $baseURL . '/statistik-penyewaan':
-                //     require_once "Controller/PimpinanController.php";
-                //     $pimpinanCtrl = new PimpinanController();
-                //     if ($_SESSION['indexStat'] == 1) {
-                //         echo $pimpinanCtrl->view_statistik_pimpinanS();
-                //     } else {
-                //         echo $pimpinanCtrl->view_statistik_pimpinanP();
-                //     }
-                //     break;
-                // laporan transaksi search di pimpinan by date
             case strpos($url, $baseURL . "/tanggal-search"):
                 require_once "Controller/PimpinanController.php";
                 $pimpinanCtrl = new PimpinanController();
