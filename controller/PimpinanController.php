@@ -91,39 +91,18 @@ class PimpinanController
         );
     }
 
-    /*public function getAllTransaksi()
+    public function getAllTransaksi()
     {
-        $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";
+        $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP ORDER BY transaksipenyewaan.noTransaksi";
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        $tarif = 20000;
-        if (isset($_SESSION['tarif'])) {
-            $tarif = $_SESSION['tarif'];
-        }
         foreach ($query_result as $key => $value) {
             if ($value['waktu_pengembalian'] != NULL) {
-                $date1 = strtotime($value['waktu_mulai']);
-                $date2 = strtotime($value['waktu_pengembalian']);
-                $diff = $date2 - $date1;
-                $diff = ceil($diff / 3600);
-                $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
-            }
-        }
-        $pagination = $this->pagination($result, $query);
-        $result = [];
-        foreach ($pagination as $key => $value) {
-            if ($value['waktu_pengembalian'] != NULL) {
-                $date1 = strtotime($value['waktu_mulai']);
-                $date2 = strtotime($value['waktu_pengembalian']);
-                $diff = $date2 - $date1;
-                $diff = ceil($diff / 3600);
-                $biaya = $diff * $tarif;
-                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $biaya, $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
+                $result[] = new Transaksi($value['noTransaksi'], $value['NoKTP'], $value['NamaPenyewa'], $value['NoUnik'], $value['Warna'], $value['biaya'], $value['waktu_mulai'], $value['waktu_pengembalian'], $value['fotoKTP']);
             }
         }
         return $result;
-    }*/
+    }
 
     public function getTransaksiWithNamaDanWarna(){
         $query = "SELECT * from scooter INNER JOIN transaksipenyewaan ON scooter.NoUnik = transaksipenyewaan.noUnik INNER JOIN transaksipengembalian ON transaksipenyewaan.noTransaksi = transaksipengembalian.noTransaksi INNER JOIN penyewa ON transaksipenyewaan.noKTP = penyewa.NoKTP";

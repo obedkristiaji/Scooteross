@@ -4,7 +4,10 @@ $halamanSekarangButton = 'logout';
 ?>
 <div class="flex-container">
     <div class="flex-header">
-        <h1>Laporan Transaksi</h1>
+        <div>
+            <h1 style="display: inline-block; padding-right: 5px;">Laporan Transaksi</h1>
+            <button onclick="window.location = `print.php`" class="tombol">Print</button>
+        </div>
         <form method="GET" action="laporan-transaksi-process"><input type="text" name="search" class="tombol"><input type="submit" value="Cari" class="tombol"></form>
     </div>
     <div class="flex-body">
