@@ -23,8 +23,8 @@ $halamanSekarangButton = 'logout';
                 <input type="text" name="emailPenyewa" required>
             </div>
             <div class="input">
-                <p>Id Kelurahan : </p>
-                <input type="number" min="1" max="152" name="kelPenyewa" required>
+                <p>Kelurahan : </p>
+                <input type="text" name="kelPenyewa" required>
             </div>
             <div class="input">
                 <br>
