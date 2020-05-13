@@ -32,8 +32,8 @@ $halamanSekarangButton = 'logout';
                 <input type="number" max="3" min="1" name="roles">
             </div>
             <div class="input">
-                <p>Id Kelurahan : </p>
-                <input type="number" max="152" min="1" name="kelurahan">
+                <p>Kelurahan : </p>
+                <input type="text" name="kelurahan">
             </div>
             <div>
                 <input type="submit" value="Tambah" class="tombol">

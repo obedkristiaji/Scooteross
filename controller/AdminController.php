@@ -14,7 +14,7 @@ class AdminController
 
     public function view_data_pengguna()
     {
-        
+
         $result = $this->getDataPenggunaWithName();
         return View::createView(
             '/Admin/dataPengguna.php',
@@ -40,10 +40,11 @@ class AdminController
         return $result;
     }*/
 
-    public function getDataPenggunaWithName(){
+    public function getDataPenggunaWithName()
+    {
         $query = "SELECT * FROM pengguna INNER JOIN role ON pengguna.IdRole = role.idRole INNER JOIN kelurahan ON pengguna.idKel = kelurahan.idKel";
         $name = $_GET['searchP'];
-        if( isset($name) && $name != ""){
+        if (isset($name) && $name != "") {
             $name = $this->db->escapeString($name);
             $query .= " WHERE NamaPengguna LIKE '%$name%' OR KTP LIKE '%$name%'";
         }
@@ -87,16 +88,17 @@ class AdminController
         return $result;
     }*/
 
-    public function getDataScooterWithWarna(){
+    public function getDataScooterWithWarna()
+    {
         $query = "SELECT * FROM scooter";
         $Warna = $_GET['searchS'];
-        if(isset($Warna) && $Warna !=""){
+        if (isset($Warna) && $Warna != "") {
             $Warna = $this->db->escapeString($Warna);
             $query .= " WHERE Warna LIKE '%$Warna%' OR NoUnik='$Warna'";
         }
         $query_result = $this->db->executeSelectQuery($query);
         $result = [];
-        foreach($query_result as $key => $value){
+        foreach ($query_result as $key => $value) {
             $result[] = new Scooter($value['NoUnik'], $value['Warna'], $value['Tarif']);
         }
         $pagination = $this->pagination($result, $query);
@@ -132,9 +134,15 @@ class AdminController
         $passwordPengguna = $_GET['passwordPengguna'];
         $Role = $_GET['roles'];
         $Kelurahan = $_GET['kelurahan'];
+
+        $temp = "SELECT idKel FROM kelurahan WHERE namaKel LIKE '%$Kelurahan%'";
+        $temp_res = $this->db->executeNonSelectQuery($temp);
+        $row = mysqli_fetch_row($temp_res);
+        $idKel = $row[0];
+
         if (
-            isset($namaPengguna) && isset($alamatPengguna) && isset($Role) && isset($KTPPengguna) && isset($emailPengguna) && isset($passwordPengguna) && isset($Kelurahan)
-            && $namaPengguna != "" && $alamatPengguna != "" && $Role != "" && $KTPPengguna != "" && $emailPengguna != "" && $passwordPengguna != "" && $Kelurahan != ""
+            isset($namaPengguna) && isset($alamatPengguna) && isset($Role) && isset($KTPPengguna) && isset($emailPengguna) && isset($passwordPengguna) && isset($idKel)
+            && $namaPengguna != "" && $alamatPengguna != "" && $Role != "" && $KTPPengguna != "" && $emailPengguna != "" && $passwordPengguna != "" && $idKel != ""
         ) {
             $KTPPengguna = $this->db->escapeString($KTPPengguna);
             $namaPengguna = $this->db->escapeString($namaPengguna);
@@ -142,9 +150,9 @@ class AdminController
             $emailPengguna = $this->db->escapeString($emailPengguna);
             $passwordPengguna = $this->db->escapeString($passwordPengguna);
             $Role = $this->db->escapeString($Role);
-            $Kelurahan = $this->db->escapeString($Kelurahan);
+            $idKel = $this->db->escapeString($idKel);
 
-            $query = "INSERT INTO pengguna (KTP,NamaPengguna,Alamat,email,password,IdRole,idKel) VALUES ('$KTPPengguna','$namaPengguna','$alamatPengguna','$emailPengguna','$passwordPengguna','$Role','$Kelurahan')";
+            $query = "INSERT INTO pengguna (KTP,NamaPengguna,Alamat,email,password,IdRole,idKel) VALUES ('$KTPPengguna','$namaPengguna','$alamatPengguna','$emailPengguna','$passwordPengguna','$Role','$idKel')";
             $this->db->executeNonSelectQuery($query);
         }
     }
@@ -160,10 +168,11 @@ class AdminController
     public function tambahScooter()
     {
         $warnaScooter = $_GET['newColor'];
-        $tarif = 20000;
-        if (isset($_SESSION['tarif'])) {
-            $tarif = $_SESSION['tarif'];
-        }
+
+        $temp = "SELECT Tarif FROM scooter WHERE NoUnik = 1";
+        $temp_res = $this->db->executeNonSelectQuery($temp);
+        $row = mysqli_fetch_row($temp_res);
+        $tarif = $row[0];
 
         if (
             isset($warnaScooter)  && $warnaScooter != ""
@@ -196,6 +205,11 @@ class AdminController
         $newPassword = $_GET['newPasswordPengguna'];
         $newRoles = $_GET['newRoles'];
         $newKelurahan = $_GET['newKelurahan'];
+
+        $temp = "SELECT idKel FROM kelurahan WHERE namaKel LIKE '%$newKelurahan%'";
+        $temp_res = $this->db->executeNonSelectQuery($temp);
+        $row = mysqli_fetch_row($temp_res);
+        $idKel = $row[0];
 
         $query = "UPDATE pengguna SET";
 
@@ -234,11 +248,11 @@ class AdminController
                 $query .= ", IdRole='$newRoles'";
             }
         }
-        if (isset($newKelurahan) && $newKelurahan != "") {
+        if (isset($idKel) && $idKel != "") {
             if ($query == "UPDATE pengguna SET") {
-                $query .= " idKel='$newKelurahan'";
+                $query .= " idKel='$idKel'";
             } else {
-                $query .= ", idKel='$newKelurahan'";
+                $query .= ", idKel='$idKel'";
             }
         }
 
@@ -285,7 +299,6 @@ class AdminController
     public function editTarifScooter()
     {
         $newTarif = $_GET['newTarif'];
-        $_SESSION['tarif'] = $newTarif;
 
         if (isset($newTarif) && $newTarif != "") {
             $newTarif = $this->db->escapeString($newTarif);

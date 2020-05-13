@@ -28,8 +28,8 @@ $halamanSekarangButton = 'logout';
                 <input type="number" max="3" min="1" name="newRoles">
             </div>
             <div class="input">
-                <p>Id Kelurahan Baru : </p>
-                <input type="number" max="152" min="1" name="newKelurahan">
+                <p>Kelurahan Baru : </p>
+                <input type="text" name="newKelurahan">
             </div>
             <div class="input">
                 <input type="submit" value="Update" class="tombol">

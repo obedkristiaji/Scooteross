@@ -130,6 +130,11 @@ class OperatorController
         $Kelurahan = $_GET['kelPenyewa'];
         $foto = $_SESSION['file'];
 
+        $temp = "SELECT idKel FROM kelurahan WHERE namaKel LIKE '%$Kelurahan%'";
+        $temp_res = $this->db->executeNonSelectQuery($temp);
+        $row = mysqli_fetch_row($temp_res);
+        $idKel = $row[0];
+
         if (isset($NoKTP) && isset($Nama) && isset($Alamat) && isset($Email) && isset($Kelurahan) && $NoKTP != "" && $Nama != "" && $Alamat != "" && $Email != "" && $Kelurahan != "") {
             $NoKTP = $this->db->escapeString($NoKTP);
             $Nama = $this->db->escapeString($Nama);
@@ -137,7 +142,7 @@ class OperatorController
             $Email = $this->db->escapeString($Email);
             $foto = $this->db->escapeString($foto);
 
-            $query = "INSERT INTO penyewa (NoKTP,NamaPenyewa,AlamatPenyewa,email,fotoKTP,idKel) VALUES ('$NoKTP','$Nama','$Alamat','$Email','$foto','$Kelurahan')";
+            $query = "INSERT INTO penyewa (NoKTP,NamaPenyewa,AlamatPenyewa,email,fotoKTP,idKel) VALUES ('$NoKTP','$Nama','$Alamat','$Email','$foto','$idKel')";
             $this->db->executeNonSelectQuery($query);
         }
     }
@@ -204,7 +209,7 @@ class OperatorController
             $temp_res = $this->db->executeNonSelectQuery($temp);
             $row = mysqli_fetch_row($temp_res);
             $tarif = $row[0];
-            
+
             if ($_SESSION['durasi'] > 1) {
                 $Biaya = $Biaya + ($tarif * $_SESSION['durasi']);
             } else {
