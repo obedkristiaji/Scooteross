@@ -1,5 +1,5 @@
-#PENTING
-Untuk tampilan maksimal, disarankan untuk menggunakan resolusi layar __1920 x 1080__ dan scale __100%__, anda dapat mengatur ini pada display settings (klik kanan di desktop)
+# __PENTING__
+Untuk tampilan __maksimal__, disarankan untuk menggunakan resolusi layar __1920 x 1080__ dan scale __100%__, anda dapat mengatur ini pada display settings (klik kanan di desktop)
 
 # Description
 Repository ini merupakan proyek akhir kolaborasi antara mata kuliah __PBW (Pemrograman Berbasis Web)__ dan __MIBD (Manajemen Informasi dan Basis Data)__.
