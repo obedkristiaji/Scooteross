@@ -5,7 +5,7 @@ Untuk tampilan __maksimal__, disarankan untuk menggunakan resolusi layar __1920 
 Repository ini merupakan proyek akhir kolaborasi antara mata kuliah __PBW (Pemrograman Berbasis Web)__ dan __MIBD (Manajemen Informasi dan Basis Data)__.
 
 # Link
-https://github.com/obedkristiaji/scooteross.git
+https://github.com/obedkristiaji/Scooteross.git
 
 # Contributor
 - Obed Kristiaji Sudarman (6181801003)
